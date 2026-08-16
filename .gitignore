@@ -1,0 +1,8 @@
+node_modules/
+# real config lives next to the .example files, never in git
+unotest/.env
+unotest/.secrets
+unotest/.runs/
+unotest/.tmp/
+unotest/.viewer.lock
+unotest/fixtures/db/*.sqlite

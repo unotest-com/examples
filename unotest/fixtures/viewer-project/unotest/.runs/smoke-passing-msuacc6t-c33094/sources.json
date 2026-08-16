@@ -1,0 +1,7 @@
+{
+  "entry": "unotest/e2e/smoke/passing.js",
+  "files": {
+    "unotest/e2e/smoke/passing.js": "// Always green, always offline — the run the viewer shows as a success,\n// and the one its Run button re-executes.\n\nfunction test_blank_page_is_reachable() {\n  step(\"Open a blank page\", () => {\n    goto('about:blank');\n    assertUrl('about:blank');\n  });\n\n  step(\"Log a line the viewer can display\", () => {\n    log('viewer fixture run');\n    assertTrue(textContains(getUrl(), 'blank'), getUrl());\n  });\n}\n",
+    "../../e2e/_helpers/auth.js": "// Sign in to the playground's fake-login dashboard. Credentials come\n// from unotest/.secrets (LOGIN / PASSWORD) — public demo values, kept\n// as secrets so every run exercises the masking machinery.\nfunction flow_signin() {\n  goto('/login');\n  fill(getByLabel('Username'), LOGIN);\n  fill(getByLabel('Password'), PASSWORD);\n  click(getByRole('button', {name: 'Sign in'}));\n  waitForUrl('/dashboard');\n}\n"
+  }
+}

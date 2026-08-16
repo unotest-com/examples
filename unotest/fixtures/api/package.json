@@ -1,0 +1,13 @@
+{
+  "name": "unotest-fixtures-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HTTP fixture backing the dogfood suite's apiCall()/upload() scenarios",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}

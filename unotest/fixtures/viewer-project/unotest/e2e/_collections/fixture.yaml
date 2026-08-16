@@ -1,0 +1,4 @@
+# Both fixture scenarios — gives the viewer a collection run to show.
+scenarios:
+  - smoke/passing
+  - smoke/failing

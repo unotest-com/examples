@@ -1,0 +1,9 @@
+{"kind":"run:started","t":1786792873867,"runId":"smoke-failing-msuaccy8-12ff54","scenario":"smoke/failing"}
+{"kind":"step:started","t":1786792873967,"file":"unotest/e2e/smoke/failing.js","line":6,"col":5}
+{"kind":"step:ok","t":1786792873970,"durationMs":3}
+{"kind":"screenshot","t":1786792874512,"path":"unotest/.runs/smoke-failing-msuaccy8-12ff54/screenshot/001-step-6-5.png","file":"unotest/e2e/smoke/failing.js","line":6,"col":5}
+{"kind":"step:started","t":1786792874512,"file":"unotest/e2e/smoke/failing.js","line":10,"col":5}
+{"kind":"step:fail","t":1786792875716,"error":"locator.waitFor: Timeout 1200ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Nothing here' }) to be visible\u001b[22m\n","errorName":"TimeoutError"}
+{"kind":"screenshot","t":1786792875739,"path":"unotest/.runs/smoke-failing-msuaccy8-12ff54/screenshot/002-step-10-5.png","file":"unotest/e2e/smoke/failing.js","line":10,"col":5}
+{"kind":"run:finished","t":1786792875740,"outcome":"failed"}
+{"kind":"failure-bundle:written","t":1786792875764,"bundlePath":".unotest/failures/r-1-msuacd7y/test_missing_element_fails","screenshotPath":".unotest/failures/r-1-msuacd7y/test_missing_element_fails/screenshot.png","url":"about:blank"}

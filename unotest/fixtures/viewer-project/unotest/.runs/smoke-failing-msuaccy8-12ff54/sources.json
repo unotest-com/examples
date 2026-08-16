@@ -1,0 +1,7 @@
+{
+  "entry": "unotest/e2e/smoke/failing.js",
+  "files": {
+    "unotest/e2e/smoke/failing.js": "// Always red, always offline — the run whose failure tab, screenshot and\n// page.html the viewer e2e scenarios open.\n\nfunction test_missing_element_fails() {\n  step(\"Open a blank page\", () => {\n    goto('about:blank');\n  });\n\n  step(\"Wait for something that will never exist\", () => {\n    waitFor(getByRole('button', {name: 'Nothing here'}), {timeout: 1200});\n  });\n}\n",
+    "../../e2e/_helpers/auth.js": "// Sign in to the playground's fake-login dashboard. Credentials come\n// from unotest/.secrets (LOGIN / PASSWORD) — public demo values, kept\n// as secrets so every run exercises the masking machinery.\nfunction flow_signin() {\n  goto('/login');\n  fill(getByLabel('Username'), LOGIN);\n  fill(getByLabel('Password'), PASSWORD);\n  click(getByRole('button', {name: 'Sign in'}));\n  waitForUrl('/dashboard');\n}\n"
+  }
+}

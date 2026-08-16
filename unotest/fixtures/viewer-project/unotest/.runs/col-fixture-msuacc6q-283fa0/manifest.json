@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "kind": "collection",
+  "ref": "fixture",
+  "adapter": "@unotest/web",
+  "startedAt": 1786792872626
+}

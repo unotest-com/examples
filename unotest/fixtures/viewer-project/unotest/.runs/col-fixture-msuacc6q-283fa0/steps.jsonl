@@ -1,0 +1,6 @@
+{"kind":"collection-run:started","t":1786792872629,"runId":"col-fixture-msuacc6q-283fa0","collection":"fixture","scenarios":["smoke/passing","smoke/failing"]}
+{"kind":"collection-run:scenario-started","t":1786792872630,"scenarioRunId":"smoke-passing-msuacc6t-c33094","scenario":"smoke/passing"}
+{"kind":"collection-run:scenario-finished","t":1786792873615,"scenarioRunId":"smoke-passing-msuacc6t-c33094","scenario":"smoke/passing","outcome":"completed"}
+{"kind":"collection-run:scenario-started","t":1786792873616,"scenarioRunId":"smoke-failing-msuaccy8-12ff54","scenario":"smoke/failing"}
+{"kind":"collection-run:scenario-finished","t":1786792875785,"scenarioRunId":"smoke-failing-msuaccy8-12ff54","scenario":"smoke/failing","outcome":"failed"}
+{"kind":"collection-run:finished","t":1786792875786,"outcome":"failed"}

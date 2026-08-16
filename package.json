@@ -1,0 +1,24 @@
+{
+  "name": "unotest-examples",
+  "version": "0.14.0",
+  "private": true,
+  "description": "The real end-to-end suite unotest runs against playground.unotest.com — copy it as a starting point for your own tests.",
+  "license": "MIT",
+  "author": "Ivan Volkov <ivan@volkov.io>",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "scripts": {
+    "postinstall": "node scripts/setup.mjs",
+    "setup": "node scripts/setup.mjs",
+    "seed": "node unotest/fixtures/db/seed.mjs",
+    "lint": "unotest-web lint",
+    "smoke": "unotest-web collection dogfood-smoke",
+    "dogfood": "unotest-web collection dogfood",
+    "viewer": "unotest-web viewer"
+  },
+  "dependencies": {
+    "@unotest/web": "0.14.0"
+  }
+}

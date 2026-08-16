@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "scenario",
+  "ref": "smoke/passing",
+  "adapter": "@unotest/web",
+  "startedAt": 1786792872877,
+  "capture": {
+    "console": false,
+    "network": false
+  },
+  "parentRunId": "col-fixture-msuacc6q-283fa0"
+}

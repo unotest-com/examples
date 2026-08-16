@@ -1,0 +1,29 @@
+# The full dogfood suite: every DSL function is exercised by something in
+# here (guarded by scripts/check-dsl-coverage.mjs).
+#
+# `sandbox/api` needs the fixture API — https://fixtures.unotest.com, or a
+# local copy via `pnpm dogfood:fixtures` plus `--env local`.
+# The viewer suite is separate (needs a running viewer): pnpm dogfood:viewer.
+scenarios:
+  - hub/smoke
+  - hub/navigation
+  - big-table/edit-dialog
+  - big-table/queries
+  - iframes/deep-form
+  - clicks/dblclick-popup
+  - file-upload/attach
+  - drag-drop/reorder
+  - ws-live/cross-tab
+  - catalog/traps
+  - catalog/forms-and-storage
+  - dashboard/login
+  - dashboard/users-crud
+  - dashboard/wizard
+  - dashboard/settings
+  - dashboard/checkout
+  - misc/time-and-eval
+  - misc/generators
+  - negative/window-asserts
+  - sandbox/db
+  - sandbox/shell
+  - sandbox/api
