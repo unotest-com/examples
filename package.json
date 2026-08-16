@@ -19,6 +19,7 @@
     "viewer": "unotest-web viewer"
   },
   "dependencies": {
-    "@unotest/web": "0.14.0"
+    "@unotest/web": "0.14.0",
+    "better-sqlite3": "^12.11.1"
   }
 }
