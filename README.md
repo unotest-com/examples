@@ -5,7 +5,7 @@ The real end-to-end suite we run against
 guards every unotest release. Copy anything here as a starting point for your
 own tests.
 
-Version `0.14.0`, pinned to `@unotest/web@0.14.0`. The suite and the
+Version `0.15.0`, pinned to `@unotest/web@0.15.0`. The suite and the
 tool always ship together, so what you see here is what that release can do.
 
 ## Run it
@@ -21,8 +21,9 @@ No account to create: the scenarios drive a public playground, and the HTTP
 fixtures they call live at [fixtures.unotest.com](https://fixtures.unotest.com).
 
 `unotest/.env` and `unotest/.secrets` are gitignored, as yours should be.
-Install copies them from the `.example` twins and never overwrites what you
-edited; `npm run setup` does the same by hand.
+Install creates them from the `.example` twins, and on a later release tops
+them up with keys that were added — your own values are never touched.
+`npm run setup` does the same by hand.
 
 ## What's inside
 
