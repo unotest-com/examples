@@ -20,6 +20,9 @@ function test_wizard_gates_each_step() {
 
   step("A valid email unlocks the step", () => {
     fill(getByLabel('Work email'), 'runner@dogfood.test');
+    // The wait, not a probe: validation runs on input, so "enabled" is a
+    // state to await rather than to snapshot.
+    waitFor(getByRole('button', {name: 'Next'}), {state: 'enabled'});
     assertTrue(isEnabled(getByRole('button', {name: 'Next'})), 'Next should unlock once the step is valid');
     click(getByRole('button', {name: 'Next'}));
   });

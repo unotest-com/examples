@@ -26,4 +26,5 @@ scenarios:
   - negative/window-asserts
   - sandbox/db
   - sandbox/shell
+  - sandbox/file-oracle
   - sandbox/api
