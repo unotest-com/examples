@@ -60,4 +60,20 @@ function test_api_multipart_upload() {
     assertTrue(files[0].filename == 'sample.txt', files[0].filename);
     assertTrue(files[0].size > 0, 'the file part arrived empty');
   });
+
+  step("PDF under the default part name, with extra form fields", () => {
+    // The consumer shape (support-ai-assistant): a NestJS
+    // FileInterceptor('file') endpoint — one part named `file`, correct
+    // content type, extra fields riding in the same form.
+    res = apiCall('POST', '/upload', upload('sample.pdf', {fields: {source: 'dogfood'}}),
+      {'x-dogfood': 'yes'});
+    assertTrue(res.status == 201, json(res.body));
+    files = res.body.files;
+    assertTrue(files.length == 1, json(files));
+    assertTrue(files[0].field == 'file', files[0].field);
+    assertTrue(files[0].filename == 'sample.pdf', files[0].filename);
+    assertTrue(textContains(files[0].contentType, 'application/pdf'), files[0].contentType);
+    assertTrue(files[0].size > 0, 'the pdf part arrived empty');
+    assertTrue(res.body.fields.source == 'dogfood', json(res.body.fields));
+  });
 }
