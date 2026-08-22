@@ -6,3 +6,5 @@ unotest/.runs/
 unotest/.tmp/
 unotest/.viewer.lock
 unotest/fixtures/db/*.sqlite
+# generated editor-typings cache (unotest-web types / lint recreate it)
+.unotest/

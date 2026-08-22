@@ -1,6 +1,3 @@
-# Viewer UI suite. Not part of `dogfood` — these need a viewer running over
-# the frozen fixture project; scripts/dogfood-viewer.mjs starts it and
-# passes its URL in as APP_BASE_URL.
 scenarios:
   - viewer/scenario-tree
   - viewer/run-history
