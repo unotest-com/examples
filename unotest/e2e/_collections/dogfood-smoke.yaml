@@ -1,5 +1,3 @@
-# The fast pass — one scenario per risk area, for the loop you run while
-# working. The full set is `dogfood`.
 scenarios:
   - hub/smoke
   - big-table/edit-dialog

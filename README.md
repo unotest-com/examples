@@ -5,7 +5,7 @@ The real end-to-end suite we run against
 guards every unotest release. Copy anything here as a starting point for your
 own tests.
 
-Version `0.18.0`, pinned to `@unotest/web@0.18.0`. The suite and the
+Version `0.19.0`, pinned to `@unotest/web@0.19.0`. The suite and the
 tool always ship together, so what you see here is what that release can do.
 
 ## Run it

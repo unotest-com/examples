@@ -2,28 +2,39 @@
 // captured with them. The fixture project ships one green run, one failed
 // run and one collection run, all committed — the numbers below are facts
 // about that fixture, not about our machine.
+//
+// The two scenario runs are CHILDREN of the collection run, so history
+// shows them folded into it: one suite, one row. That folding is the
+// point of the grouping — a suite of 23 tests must not be 23 rows every
+// hour — so the fixture exercising it is the fixture we want.
 
 function test_run_history_opens_a_failed_run() {
   step("Open the runs panel", () => {
     goto('/');
     click(getByRole('button', {name: 'Runs'}));
-    waitFor(getByRole('button', {name: /^Run smoke\/failing/}));
+    waitFor(getByRole('button', {name: /^Collection fixture/}));
   });
 
-  step("All three fixture runs are listed with their outcome", () => {
+  step("The suite is one row carrying its tally, not one row per test", () => {
+    assertVisible(getByRole('button', {name: /^Collection fixture — 1 passed, 1 failed/}));
+    assertHidden(getByRole('button', {name: /^Run smoke\/failing/}));
+  });
+
+  step("Expanding the suite reveals both of its runs", () => {
+    click(getByRole('button', {name: /^Collection fixture/}));
     assertVisible(getByRole('button', {name: /^Run smoke\/passing — passed/}));
     assertVisible(getByRole('button', {name: /^Run smoke\/failing — failed/}));
-    assertVisible(getByRole('button', {name: /^Collection fixture/}));
   });
 
   step("The passed filter hides the failed run", () => {
     click(getByRole('button', {name: 'passed', exact: true}));
-    assertVisible(getByRole('button', {name: /^Run smoke\/passing/}));
     assertHidden(getByRole('button', {name: /^Run smoke\/failing/}));
     click(getByRole('button', {name: 'all', exact: true}));
   });
 
   step("Opening the failed run shows both of its steps", () => {
+    // The suite is still expanded from the step above — clicking its row
+    // again would fold it back up.
     click(getByRole('button', {name: /^Run smoke\/failing/}));
     waitForText('Open a blank page');
     assertVisible(getByText('Wait for something that will never exist'));
@@ -33,5 +44,34 @@ function test_run_history_opens_a_failed_run() {
     assertVisible(getByRole('button', {name: 'Screenshot'}));
     assertVisible(getByRole('button', {name: 'Console'}));
     assertVisible(getByRole('button', {name: 'Network'}));
+  });
+}
+
+function test_history_narrows_to_one_test() {
+  step("Open the failed run from history", () => {
+    goto('/');
+    click(getByRole('button', {name: 'Runs'}));
+    click(getByRole('button', {name: /^Collection fixture/}));
+    click(getByRole('button', {name: /^Run smoke\/failing/}));
+    waitForText('Open a blank page');
+  });
+
+  step("The run's title leads back to the test it ran", () => {
+    click(getByRole('button', {name: 'Open the test'}));
+    waitFor(getByRole('button', {name: 'History'}));
+  });
+
+  step("History from the test filters to that test alone", () => {
+    click(getByRole('button', {name: 'History'}));
+    // A structural chip, not text in the search box: `smoke/failing`
+    // typed as free text would also select `smoke/failing-extra`.
+    waitFor(getByRole('button', {name: 'Clear test filter'}));
+    assertVisible(getByRole('button', {name: /^Run smoke\/failing/}));
+    assertHidden(getByRole('button', {name: /^Run smoke\/passing/}));
+  });
+
+  step("Clearing the chip brings the whole history back", () => {
+    click(getByRole('button', {name: 'Clear test filter'}));
+    assertVisible(getByRole('button', {name: /^Collection fixture/}));
   });
 }
