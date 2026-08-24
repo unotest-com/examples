@@ -1,3 +1,4 @@
+// @expect-fail
 // Deliberate failure: an ambiguous locator. Strict mode is a feature — the
 // message has to name the collision instead of silently picking the first.
 

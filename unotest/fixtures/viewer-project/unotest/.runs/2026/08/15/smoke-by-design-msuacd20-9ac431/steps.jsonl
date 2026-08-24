@@ -1,0 +1,6 @@
+{"kind":"run:started","t":1786792880102,"runId":"smoke-by-design-msuacd20-9ac431","scenario":"smoke/by-design"}
+{"kind":"step:started","t":1786792880190,"file":"unotest/e2e/smoke/by-design.js","line":8,"col":5}
+{"kind":"step:ok","t":1786792880193,"durationMs":3}
+{"kind":"step:started","t":1786792880194,"file":"unotest/e2e/smoke/by-design.js","line":12,"col":5}
+{"kind":"step:fail","t":1786792881420,"error":"locator.waitFor: Timeout 1200ms exceeded.","errorName":"TimeoutError"}
+{"kind":"run:finished","t":1786792881421,"outcome":"failed"}

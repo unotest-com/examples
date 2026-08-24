@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "kind": "scenario",
+  "ref": "smoke/by-design",
+  "adapter": "@unotest/web",
+  "startedAt": 1786792880100,
+  "capture": {
+    "console": false,
+    "network": false
+  }
+}

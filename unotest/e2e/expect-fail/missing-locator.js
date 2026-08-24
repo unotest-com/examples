@@ -1,3 +1,4 @@
+// @expect-fail
 // Deliberate failure: nothing on the page matches. Run by
 // scripts/dogfood-expect-fail.mjs, which asserts the wording of the
 // failure and the artifacts left behind — never green.

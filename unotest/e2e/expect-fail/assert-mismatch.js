@@ -1,3 +1,4 @@
+// @expect-fail
 // Deliberate failure: the element is there, its text is not what we claim.
 // The message must carry both sides plus the step label.
 
