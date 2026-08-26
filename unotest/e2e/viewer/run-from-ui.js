@@ -20,10 +20,12 @@ function test_run_button_executes_the_scenario() {
 
   step("It shows up in the run history as a fresh pass", () => {
     click(getByRole('button', {name: 'Runs'}));
-    // Exactly one visible row: this run, launched on its own, under
-    // today's heading. The fixture's other passing run is a child of the
-    // committed suite and stays folded inside it — which is the grouping
-    // working, not history losing a run.
-    waitForCount(getByRole('button', {name: /^Run smoke\/passing — passed/}), 1, {timeout: 15000});
+    // One visible row for this run under today's heading. Two shapes are
+    // legitimate: a single fresh run renders as "Run smoke/passing —
+    // passed, …", while consecutive runs of the same scenario collapse
+    // into one run-length row "smoke/passing — N runs, …" (a history
+    // feature, not a loss). The fixture's committed passing run stays
+    // folded inside its collection either way.
+    waitForCount(getByRole('button', {name: /^(Run smoke\/passing — passed|smoke\/passing — \d+ runs)/}), 1, {timeout: 15000});
   });
 }

@@ -1,5 +1,5 @@
 // assertJudge dogfood — runs against the deterministic fake provider
-// (UNOTEST_JUDGE_MODE=local + JUDGE_PROVIDER=fake in unotest/.env), so the
+// (UNOTEST_JUDGE_MODE=local + UNOTEST_JUDGE_PROVIDER=fake in unotest/.env), so the
 // suite exercises the full judge pipeline (text capture → verdict →
 // steps.jsonl record) without depending on a live LLM backend. The fake
 // judge parses rubric lines "must contain: X" / "must not contain: X".
