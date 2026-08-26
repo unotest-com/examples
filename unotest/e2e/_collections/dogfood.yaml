@@ -28,3 +28,4 @@ scenarios:
   - sandbox/shell
   - sandbox/file-oracle
   - sandbox/api
+  - sandbox/assert-judge
