@@ -1,5 +1,28 @@
 // Helpers for the viewer's own UI suite (unotest/e2e/viewer/*).
 
+// Open the viewer under test: bring it up if it is down, go to it, and
+// prove it is the FIXTURE one.
+//
+// The app under test here is a viewer over a frozen fixture project, not
+// the playground — so this navigates to VIEWER_URL (unotest/.env) instead
+// of baseUrl. That is what makes these scenarios work everywhere: no
+// environment to pick, no wrapper script, so `unotest-web e2e`, the Run
+// button in a viewer's UI and an agent's `run_test` all behave the same.
+//
+// The ensure call is idempotent and returns in milliseconds once the
+// fixture viewer is up; it exits non-zero — failing this step with its
+// message — when the port is held by SOMEONE ELSE'S viewer. The text check
+// is the other half of that guard, for the case where a stranger's viewer
+// answers and the ensure never had to run: the tree header names the open
+// project, and the fixture copy has a name of its own. Without both, the
+// suite would quietly test somebody else's project and report failures
+// about scenarios that were never supposed to be there.
+function flow_open_fixture_viewer() {
+  shell('node', 'scripts/viewer-fixture-server.mjs', '--ensure');
+  goto(VIEWER_URL);
+  waitForText('viewer-fixture');
+}
+
 // Width of the overview's counter row, in CSS pixels.
 //
 // Layout geometry is the one thing no locator can express: a collapsed

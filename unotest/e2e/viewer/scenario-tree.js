@@ -1,11 +1,12 @@
 // The viewer's left rail and scenario tree. Runs against a frozen fixture
 // project (unotest/fixtures/viewer-project) so what the panes list never
-// depends on what we happened to run today —
-// scripts/dogfood-viewer.mjs starts it and passes the URL in.
+// depends on what we happened to run today. The fixture viewer comes up on
+// demand — `pnpm dogfood:viewer`, a single `e2e viewer/scenario-tree` and
+// the Run button in a viewer's own UI all work as-is.
 
 function test_scenario_tree_lists_and_opens_a_test() {
   step("Open the viewer", () => {
-    goto('/');
+    flow_open_fixture_viewer();
     waitFor(getByRole('button', {name: 'Scenarios'}));
   });
 

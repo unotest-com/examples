@@ -1,11 +1,12 @@
-// The viewer's overview field — one tile per scenario, shown while no tab
-// is open. Runs against the frozen fixture project (three scenarios: one
-// green, one red, one red on purpose), so the counts are fixed —
-// scripts/dogfood-viewer.mjs starts it and passes the URL in.
+// The viewer's overview field — one tile per scenario, on the pinned Home
+// tab. Runs against the frozen fixture project (three scenarios: one green,
+// one red, one red on purpose), so the counts are fixed. The fixture viewer
+// comes up on demand — `pnpm dogfood:viewer`, a single `e2e viewer/overview`
+// and the Run button in a viewer's own UI all work as-is.
 
 function test_overview_shows_one_tile_per_scenario() {
-  step("Open the viewer on an empty workspace", () => {
-    goto('/');
+  step("Open the viewer on its Home tab", () => {
+    flow_open_fixture_viewer();
     waitForText('OVERVIEW');
   });
 
@@ -35,8 +36,8 @@ function test_overview_shows_one_tile_per_scenario() {
 }
 
 function test_overview_keeps_a_deliberate_failure_out_of_the_alarm() {
-  step("Open the viewer on an empty workspace", () => {
-    goto('/');
+  step("Open the viewer on its Home tab", () => {
+    flow_open_fixture_viewer();
     waitForText('OVERVIEW');
   });
 
@@ -60,8 +61,8 @@ function test_overview_keeps_a_deliberate_failure_out_of_the_alarm() {
 }
 
 function test_overview_hover_reveals_the_test_behind_a_tile() {
-  step("Open the viewer on an empty workspace", () => {
-    goto('/');
+  step("Open the viewer on its Home tab", () => {
+    flow_open_fixture_viewer();
     waitForText('OVERVIEW');
   });
 
@@ -75,8 +76,8 @@ function test_overview_hover_reveals_the_test_behind_a_tile() {
 }
 
 function test_overview_survives_a_filter_that_matches_nothing() {
-  step("Open the viewer on an empty workspace", () => {
-    goto('/');
+  step("Open the viewer on its Home tab", () => {
+    flow_open_fixture_viewer();
     waitForText('OVERVIEW');
     width_with_tiles = overview_header_width();
     assertTrue(width_with_tiles > 400, 'header should start at a readable width');

@@ -4,7 +4,7 @@
 
 function test_run_button_executes_the_scenario() {
   step("Open the fixture's passing scenario", () => {
-    goto('/');
+    flow_open_fixture_viewer();
     click(getByRole('button', {name: 'passing', exact: true}));
     waitForText('Log a line the viewer can display');
   });

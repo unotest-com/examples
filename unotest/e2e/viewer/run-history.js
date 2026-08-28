@@ -10,7 +10,7 @@
 
 function test_run_history_opens_a_failed_run() {
   step("Open the runs panel", () => {
-    goto('/');
+    flow_open_fixture_viewer();
     click(getByRole('button', {name: 'Runs'}));
     waitFor(getByRole('button', {name: /^Collection fixture/}));
   });
@@ -49,7 +49,7 @@ function test_run_history_opens_a_failed_run() {
 
 function test_history_narrows_to_one_test() {
   step("Open the failed run from history", () => {
-    goto('/');
+    flow_open_fixture_viewer();
     click(getByRole('button', {name: 'Runs'}));
     click(getByRole('button', {name: /^Collection fixture/}));
     click(getByRole('button', {name: /^Run smoke\/failing/}));

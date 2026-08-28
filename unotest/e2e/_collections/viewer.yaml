@@ -1,6 +1,7 @@
-# Viewer UI suite. Not part of `dogfood` — these need a viewer running over
-# the frozen fixture project; scripts/dogfood-viewer.mjs starts it and
-# passes its URL in as APP_BASE_URL.
+# Viewer UI suite. Not part of `dogfood`: it drives a viewer over the frozen
+# fixture project rather than the playground. Nothing to set up — the
+# scenarios navigate to VIEWER_URL and bring that viewer up themselves (see
+# unotest/e2e/_helpers/viewer.js).
 scenarios:
   - viewer/scenario-tree
   - viewer/overview
