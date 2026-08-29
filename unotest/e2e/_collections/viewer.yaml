@@ -7,3 +7,7 @@ scenarios:
   - viewer/overview
   - viewer/run-history
   - viewer/run-from-ui
+  # Last on purpose: it deliberately occupies the fixture viewer's run
+  # slot, and a stand that is killed mid-scenario keeps it for a few more
+  # seconds. Nothing behind it to delay.
+  - viewer/run-queue
