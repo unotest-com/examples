@@ -18,7 +18,7 @@
 // suite would quietly test somebody else's project and report failures
 // about scenarios that were never supposed to be there.
 function flow_open_fixture_viewer() {
-  shell('node', 'scripts/viewer-fixture-server.mjs', '--ensure');
+  shell('node', 'unotest/fixtures/viewer/server.mjs', '--ensure');
   goto(VIEWER_URL);
   waitForText('viewer-fixture');
 }
