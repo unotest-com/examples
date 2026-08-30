@@ -1,3 +1,8 @@
+# The sandbox scenarios read a seeded sqlite fixture, so the suite prepares
+# it itself — whoever starts the collection (schedule, CI, the viewer's Run
+# button) gets the same environment. `--no-prepare` skips it for a run
+# against an environment somebody else prepared.
+prepare: "node unotest/fixtures/db/seed.mjs"
 scenarios:
   - hub/smoke
   - big-table/edit-dialog

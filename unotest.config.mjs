@@ -20,14 +20,14 @@ export default {
   // prints them and says so.
   //
   // Hourly, like the box's runner loop has been since it replaced the
-  // host cron. `prepare` seeds the local sqlite fixture the sandbox/db
-  // scenarios read; the path works both here and in the examples mirror,
-  // which is why it is a file and not an npm script name.
+  // host cron. Seeding the sqlite fixture is the COLLECTION's `prepare:`
+  // now (see `_collections/dogfood.yaml`), so a CI run and a run started
+  // from the viewer prepare the same way a scheduled tick does — an entry
+  // here would only be needed to prepare DIFFERENTLY on this tick.
   schedules: [
     {
       collection: "dogfood",
       cron: "0 * * * *",
-      prepare: "node unotest/fixtures/db/seed.mjs",
     },
   ],
   sandbox: {

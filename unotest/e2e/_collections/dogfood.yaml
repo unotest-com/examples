@@ -4,6 +4,11 @@
 # `sandbox/api` needs the fixture API — https://fixtures.unotest.com, or a
 # local copy via `pnpm dogfood:fixtures` plus `--env local`.
 # The viewer suite is separate (needs a running viewer): pnpm dogfood:viewer.
+# The sandbox scenarios read a seeded sqlite fixture, so the suite prepares
+# it itself — whoever starts the collection (schedule, CI, the viewer's Run
+# button) gets the same environment. `--no-prepare` skips it for a run
+# against an environment somebody else prepared.
+prepare: "node unotest/fixtures/db/seed.mjs"
 scenarios:
   - hub/smoke
   - hub/navigation
