@@ -29,9 +29,14 @@ function flow_open_fixture_viewer() {
 // header is still present, still visible, still carries its text — width
 // is the only signal that it got squeezed. Reading it is exactly what the
 // escape hatch is for.
+//
+// Anchored on the "Show all tests" card, not on the first
+// `button[aria-pressed]` in the document: the `last run | schedule`
+// toggle is also a pressed-button group and mounts ABOVE the cards, so
+// "first" quietly started measuring the toggle instead of the row.
 function overview_header_width() {
   return evaluate( // lint-ok: element geometry has no typed getter — the geometry IS the assertion
-    '(() => Math.round(document.querySelector("button[aria-pressed]").parentElement.getBoundingClientRect().width))()'
+    '(() => Math.round(document.querySelector(\'button[aria-label="Show all tests"]\').parentElement.getBoundingClientRect().width))()'
   );
 }
 

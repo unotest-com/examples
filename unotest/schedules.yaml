@@ -1,0 +1,9 @@
+# Schedules the viewer manages (right-click a test or a collection →
+# Schedule…). Merged with the `schedules` of unotest.config; this file
+# wins on a duplicate target.
+#
+# One per-test entry on purpose: it is what dogfoods per-test scheduling
+# on the box — the hourly `dogfood` collection would not exercise it.
+schedules:
+  - scenario: hub/smoke
+    cron: "20 3 * * *"
