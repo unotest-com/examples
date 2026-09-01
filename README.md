@@ -5,17 +5,23 @@ The real end-to-end suite we run against
 guards every unotest release. Copy anything here as a starting point for your
 own tests.
 
-Version `0.27.0`, pinned to `@unotest/web@0.27.0`. The suite and the
+Version `0.28.0`, pinned to `@unotest/web@0.28.0`. The suite and the
 tool always ship together, so what you see here is what that release can do.
 
 ## Run it
 
 ```sh
-npm install       # also creates unotest/.env and unotest/.secrets
-npm run seed      # seeds the local sqlite fixture
-npm run dogfood   # the full suite
-npm run smoke     # a quick subset
+npm install --prefix unotest   # the suite, and its unotest/.env + .secrets
+npm run seed                   # seeds the local sqlite fixture
+npm run dogfood                # the full suite
+npm run smoke                  # a quick subset
 ```
+
+The tests are their own npm package — `unotest/` has its own
+`package.json`, lockfile and `node_modules`. That is the arrangement we
+recommend for your project too: the runner never enters the dependency
+graph of the application it tests, so upgrading one cannot break the
+other. Copy the shape, not just the scenarios.
 
 No account to create: the scenarios drive a public playground, and the HTTP
 fixtures they call live at [fixtures.unotest.com](https://fixtures.unotest.com).

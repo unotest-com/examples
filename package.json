@@ -1,6 +1,6 @@
 {
   "name": "unotest-examples",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "private": true,
   "description": "The real end-to-end suite unotest runs against playground.unotest.com — copy it as a starting point for your own tests.",
   "license": "MIT",
@@ -10,17 +10,11 @@
   },
   "type": "module",
   "scripts": {
-    "postinstall": "node scripts/setup.mjs",
-    "setup": "node scripts/setup.mjs",
+    "setup": "npm --prefix unotest run setup",
     "seed": "node unotest/fixtures/db/seed.mjs",
-    "lint": "unotest-web lint",
-    "smoke": "unotest-web collection dogfood-smoke",
-    "dogfood": "unotest-web collection dogfood",
-    "viewer": "unotest-web viewer"
-  },
-  "dependencies": {
-    "@unotest/web": "0.27.0",
-    "@unotest/judge": "0.27.0",
-    "better-sqlite3": "^12.11.1"
+    "lint": "npm --prefix unotest exec unotest-web -- lint",
+    "smoke": "npm --prefix unotest exec unotest-web -- collection dogfood-smoke",
+    "dogfood": "npm --prefix unotest exec unotest-web -- collection dogfood",
+    "viewer": "npm --prefix unotest exec unotest-web -- viewer"
   }
 }

@@ -1,4 +1,5 @@
 node_modules/
+unotest/node_modules/
 # real config lives next to the .example files, never in git
 unotest/.env
 unotest/.secrets

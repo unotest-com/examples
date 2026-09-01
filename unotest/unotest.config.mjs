@@ -9,7 +9,10 @@
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = dirname(fileURLToPath(import.meta.url));
+// The PROJECT root, one level up: this file lives in the suite package
+// (`unotest/`), and every path below is written relative to the project —
+// which is also what `shellCwd` has to be.
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 /** @type {Partial<import('@unotest/web').UnotestConfig>} */
 export default {

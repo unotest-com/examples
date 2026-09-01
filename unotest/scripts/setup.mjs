@@ -2,7 +2,8 @@
 // Creates unotest/.env and unotest/.secrets from their .example twins,
 // and tops up keys that a later release added.
 //
-// Runs on postinstall so `npm install && npm run dogfood` just works.
+// Runs on the SUITE's postinstall, so `npm install --prefix unotest`
+// both installs the suite and leaves it runnable.
 // Your values are never touched — only missing KEYS are appended.
 //
 // Skipping an existing file outright is what this used to do, and it
@@ -11,6 +12,13 @@
 // `external variable "CATALOG_SEED" not found`. The fix was a manual
 // `rm unotest/.env` — on the runner and for everyone who forked this.
 import { appendFileSync, copyFileSync, existsSync, readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+// Anchored to this file, never to cwd: npm runs a lifecycle script from
+// the package directory but `npm run setup` from the repository root
+// runs it from there, and a relative path would mean two different files.
+const SUITE = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 const KEY_LINE = /^([A-Z][A-Z0-9_]*)=/;
 
@@ -20,11 +28,12 @@ function keysIn(text) {
   );
 }
 
-for (const target of ["unotest/.env", "unotest/.secrets"]) {
+for (const name of [".env", ".secrets"]) {
+  const target = join(SUITE, name);
   const example = `${target}.example`;
   if (!existsSync(target)) {
     copyFileSync(example, target);
-    console.log(`created ${target} from ${example}`);
+    console.log(`created unotest/${name} from unotest/${name}.example`);
     continue;
   }
   const present = keysIn(readFileSync(target, "utf8"));
@@ -40,6 +49,6 @@ for (const target of ["unotest/.env", "unotest/.secrets"]) {
     `\n# added by setup — new in this release\n${missing.join("\n")}\n`,
   );
   console.log(
-    `${target}: added ${missing.map((line) => line.split("=")[0]).join(", ")}`,
+    `unotest/${name}: added ${missing.map((line) => line.split("=")[0]).join(", ")}`,
   );
 }

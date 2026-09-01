@@ -1,0 +1,15 @@
+{
+  "name": "unotest-examples-suite",
+  "version": "0.28.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "node scripts/setup.mjs",
+    "setup": "node scripts/setup.mjs"
+  },
+  "dependencies": {
+    "@unotest/web": "0.28.0",
+    "@unotest/judge": "0.28.0",
+    "better-sqlite3": "^12.11.1"
+  }
+}

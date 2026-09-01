@@ -8,6 +8,6 @@
   "include": [
     "**/*.js",
     "../.unotest/types/env.d.ts",
-    "../node_modules/@unotest/web/types/unotest-dsl.d.ts"
+    "./node_modules/@unotest/web/types/unotest-dsl.d.ts"
   ]
 }
