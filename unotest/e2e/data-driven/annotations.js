@@ -1,5 +1,5 @@
-// Stage 7 dogfood: run annotations. note() is called from a HELPER, so the
-// viewer has to attribute it to the entry-file line that called the helper
+// Run annotations. note() is called from a HELPER, so the viewer has to
+// attribute it to the entry-file line that called the helper
 // (entryLine/entryCol); log() from the step body lands in the journal and
 // the System panel after the run; assertJudge leaves a verdict the viewer
 // renders under the step, not only in the error card.
@@ -16,7 +16,7 @@ function test_run_annotations_from_helper_log_and_judge() {
     note('page id', row.id);
     note('rows in fixture', 4);
     note('row', row);
-    note('login used', LOGIN);
+    note('masking probe', MASKING_PROBE);
     log('notes written');
   });
 

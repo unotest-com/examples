@@ -2,9 +2,9 @@
 // Guard: admin login on the box-lab stand
 // #4287f5
 //
-// Runs against whatever box APP_BASE_URL points at: `--env lab` is the
-// local box-lab stand (docs/testing/box-lab.md). Recorded live via
-// explore_*; the locators are the ones flow_guard_login uses.
+// Runs against whatever box APP_BASE_URL points at: `--env lab` aims it
+// at a local stand instead of a deployed box. Recorded live against the
+// page; the locators are the ones flow_guard_login uses.
 function test_guard_login() {
   step("Sign in to the box as ivan", () => {
     flow_guard_login("ivan", BOX_LAB_PASSWORD);

@@ -1,6 +1,6 @@
 {
   "name": "unotest-examples",
-  "version": "0.31.0",
+  "version": "0.32.0",
   "private": true,
   "description": "The real end-to-end suite unotest runs against playground.unotest.com — copy it as a starting point for your own tests.",
   "license": "MIT",

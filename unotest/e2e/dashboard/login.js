@@ -1,6 +1,7 @@
-// Protected dashboard: fake login with credentials from
-// unotest/.secrets. The values must resolve for the live run but never
-// appear in logs or artifacts (SecretRegistry masking).
+// Protected dashboard: fake login with the public demo credentials from
+// unotest/.env. Nothing to mask here — the values are hardcoded in the
+// playground; what this scenario owns is that they resolve and the
+// session survives a sign-out.
 
 function test_login_reaches_the_dashboard() {
   step("Sign in with the demo credentials", () => {

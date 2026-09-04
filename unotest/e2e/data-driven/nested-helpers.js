@@ -1,6 +1,6 @@
-// Stage 8 (Trace): helper inside helper — the entry step calls
-// flow_visit_and_verify, which calls flow_open_page and flow_verify_page,
-// each with steps of its own. Everything passes; the journal is the
+// Helper inside helper — the entry step calls flow_visit_and_verify,
+// which calls flow_open_page and flow_verify_page, each with steps of
+// its own. Everything passes; the journal is the
 // fixture for the trace tree: step envelopes nested three frames deep,
 // every event carrying file/line/col of the helper AND entryLine/entryCol
 // of the entry statement.

@@ -1,7 +1,7 @@
 // @expect-fail
-// Stage 8 (Trace): a loop that SKIPS its second iteration and FAILS on the
-// third. The DSL has no `continue` (dsl-reference: not supported), so the
-// skip is an `if` around the body — which is what the trace has to show:
+// A loop that SKIPS its second iteration and FAILS on the third. The DSL
+// has no `continue` (dsl-reference: not supported), so the skip is an
+// `if` around the body — which is what the trace has to show:
 // iteration 1 with steps, iteration 2 with none, iteration 3 failing, no
 // iteration 4. The tag makes each iteration findable in the tree.
 

@@ -1,0 +1,19 @@
+# A collection that is RED on purpose.
+#
+# A green suite says nothing about the half of the product people actually
+# live in: what a FAILED run tells you afterwards. This collection exists to
+# be run and then read — its failing scenario carries soft-step totals with
+# tags and a judge verdict at once, so whatever renders the result (a viewer,
+# a CLI summary, an agent reading the run remotely) can be judged on real
+# material instead of a hand-made fixture.
+#
+# The green scenario in front of it is the contrast: a reader that cannot
+# tell the two apart is the bug this collection is meant to expose.
+#
+# Keep it OUT of the gate. `pnpm dogfood` and `dogfood:full` do not run it,
+# and adding it there would paint the gate permanently red — a red that
+# means nothing is worse than no check at all.
+scenarios:
+  - hub/smoke
+  - misc/secret-masking
+  - expect-fail/soft-steps-and-judge

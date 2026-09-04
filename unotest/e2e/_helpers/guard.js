@@ -19,7 +19,7 @@ function flow_guard_logout() {
 }
 
 // ---------------------------------------------------------------------------
-// Administration and Values pages (guard redesign, docs/plans/guard-ui-redesign.md).
+// Administration and Values pages.
 // ---------------------------------------------------------------------------
 
 // Administration → end every session except the current one (the row with
@@ -57,7 +57,7 @@ function guard_add_value(name, value, secret) {
   waitFor(guard_value_row(name));
 }
 
-// The runner accepts the confirm() dialog on its own (D-OPEN-5).
+// The confirm() dialog is accepted by the runner itself.
 function guard_remove_value(name) {
   click(guard_value_row(name).getByRole('button', {name: 'Remove', exact: true}));
   waitForCount(guard_value_row(name), 0, {exact: true});

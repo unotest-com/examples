@@ -18,9 +18,8 @@ function flow_open_page_noted(row) {
   note('landed on', getUrl());
 }
 
-// Stage 8 (Trace): a helper that calls another helper, both with steps
-// inside. The Steps view projects nothing below the entry file; the Trace
-// view must show flow_visit_and_verify → flow_open_page → goto/waitForText
+// A helper that calls another helper, both with steps inside. The Steps
+// view projects nothing below the entry file; the Trace view must show flow_visit_and_verify → flow_open_page → goto/waitForText
 // as nested frames with their own step envelopes.
 function flow_verify_page(row) {
   step("Landmark text is on screen", () => {
