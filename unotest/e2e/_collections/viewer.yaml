@@ -5,7 +5,11 @@
 scenarios:
   - viewer/scenario-tree
   - viewer/overview
+  - viewer/overview-expected-failure
+  - viewer/overview-hover
+  - viewer/overview-empty-filter
   - viewer/run-history
+  - viewer/history-filter-by-test
   - viewer/run-from-ui
   # Last on purpose: it deliberately occupies the fixture viewer's run
   # slot, and a stand that is killed mid-scenario keeps it for a few more

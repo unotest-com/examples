@@ -46,32 +46,3 @@ function test_run_history_opens_a_failed_run() {
     assertVisible(getByRole('button', {name: 'Network'}));
   });
 }
-
-function test_history_narrows_to_one_test() {
-  step("Open the failed run from history", () => {
-    flow_open_fixture_viewer();
-    click(getByRole('button', {name: 'Runs'}));
-    click(getByRole('button', {name: /^Collection fixture/}));
-    click(getByRole('button', {name: /^Run smoke\/failing/}));
-    waitForText('Open a blank page');
-  });
-
-  step("The run's title leads back to the test it ran", () => {
-    click(getByRole('button', {name: 'Open the test'}));
-    waitFor(getByRole('button', {name: 'History'}));
-  });
-
-  step("History from the test filters to that test alone", () => {
-    click(getByRole('button', {name: 'History'}));
-    // A structural chip, not text in the search box: `smoke/failing`
-    // typed as free text would also select `smoke/failing-extra`.
-    waitFor(getByRole('button', {name: 'Clear test filter'}));
-    assertVisible(getByRole('button', {name: /^Run smoke\/failing/}));
-    assertHidden(getByRole('button', {name: /^Run smoke\/passing/}));
-  });
-
-  step("Clearing the chip brings the whole history back", () => {
-    click(getByRole('button', {name: 'Clear test filter'}));
-    assertVisible(getByRole('button', {name: /^Collection fixture/}));
-  });
-}

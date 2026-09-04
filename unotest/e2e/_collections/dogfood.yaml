@@ -13,24 +13,36 @@ scenarios:
   - hub/smoke
   - hub/navigation
   - big-table/edit-dialog
-  - big-table/queries
+  - big-table/counting-and-reading
+  - big-table/refining-and-selection
   - iframes/deep-form
-  - clicks/dblclick-popup
+  - clicks/dblclick
+  - clicks/popup-set-page
   - file-upload/attach
   - drag-drop/reorder
   - ws-live/cross-tab
   - catalog/traps
-  - catalog/forms-and-storage
+  - catalog/search-form
+  - catalog/storage-survives-reload
+  - catalog/delayed-navigation
   - dashboard/login
   - dashboard/users-crud
+  - dashboard/users-sorting-pagination
   - dashboard/wizard
   - dashboard/settings
   - dashboard/checkout
-  - misc/time-and-eval
+  - misc/time-helpers
+  - misc/evaluate
   - misc/generators
+  - misc/random-nth-and-screenshot
   - negative/window-asserts
   - sandbox/db
   - sandbox/shell
+  - sandbox/wait-for-file
   - sandbox/file-oracle
   - sandbox/api
   - sandbox/assert-judge
+  - data-driven/pages-from-jsonl
+  - data-driven/soft-steps-tagged
+  - data-driven/annotations
+  - data-driven/nested-helpers

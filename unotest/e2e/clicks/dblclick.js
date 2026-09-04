@@ -1,8 +1,8 @@
-// Click vs double-click, and the second window. The mixed tile has BOTH
-// handlers: a real double click fires click → click → dblclick, and the page
-// debounces the single-click dialog by 280ms so the dblclick one wins — a
-// synthetic "two clicks" would open the wrong dialog. The popup tiles open a
-// real second window that setPage() has to reach.
+// Click vs double-click. The mixed tile has BOTH handlers: a real double
+// click fires click → click → dblclick, and the page debounces the
+// single-click dialog by 280ms so the dblclick one wins — a synthetic "two
+// clicks" would open the wrong dialog. The popup tiles are
+// clicks/popup-set-page.
 
 function test_double_click_wins_over_the_single_click_dialog() {
   step("Open the clicks scenario", () => {
@@ -26,26 +26,5 @@ function test_double_click_wins_over_the_single_click_dialog() {
     doubleClick(getByRole('button', {name: 'Either action'}));
     assertVisible(getByRole('dialog', {name: 'Mixed — double click'}));
     click(getByRole('button', {name: 'Close dialog'}));
-  });
-}
-
-function test_popup_window_is_reachable_with_set_page() {
-  step("Open the clicks scenario", () => {
-    goto('/scenarios/clicks');
-    waitFor(getByRole('button', {name: 'Open popup'}));
-    assertTrue(textContains(getTitle(), 'Click'), getTitle());
-  });
-
-  step("The popup opens as a second page", () => {
-    click(getByRole('button', {name: 'Open popup'}));
-    setPage(1);
-    waitForText('Popup opened via');
-    assertTrue(textContains(getTitle(), 'Popup (single click)'), getTitle());
-  });
-
-  step("Close it from inside and come back to the first page", () => {
-    click(getByRole('button', {name: 'Close'}));
-    setPage(0);
-    assertVisible(getByRole('button', {name: 'Open popup'}));
   });
 }

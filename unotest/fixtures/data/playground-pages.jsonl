@@ -1,0 +1,5 @@
+{"id":"hub","path":"/","text":"Stress-test browser","enabled":true}
+{"enabled":true,"text":"Click me","path":"/scenarios/clicks","id":"clicks"}
+{"id":"drag-drop","enabled":true,"path":"/scenarios/drag-drop","text":"Backlog"}
+{"id":"iframes","path":"/scenarios/iframes","text":"Level 1 frame","enabled":false}
+not a json line — a writer's log message the oracle must skip
