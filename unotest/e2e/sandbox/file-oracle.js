@@ -2,15 +2,16 @@
 // structured events to a file and the scenario waits on them by KEY, not
 // by substring — JSON key order is not guaranteed, so a substring filter
 // breaks the first time the writer reorders its fields. Files land under
-// unotest/.tmp/ with a run-scoped marker so parallel runs never collide.
+// the suite's scratch directory (scratch_path) with a run-scoped marker so
+// parallel runs never collide.
 
 function test_json_line_oracles() {
   step("A background writer appends two events plus noise", () => {
     marker = randomWord(10);
-    path = 'unotest/.tmp/' + marker + '.jsonl';
+    path = scratch_path(marker + '.jsonl');
     // Keys are deliberately emitted in a different order per line, and a
     // half-written trailing line stands in for a file caught mid-append.
-    shell('node', '-e', 'const {mkdirSync,appendFileSync}=require("node:fs");const p=process.argv[1];mkdirSync("unotest/.tmp",{recursive:true});appendFileSync(p,JSON.stringify({roomId:"r1",userId:"human",isBot:false})+"\\n");setTimeout(()=>appendFileSync(p,JSON.stringify({isBot:true,userId:"bot_x",roomId:"r1",seq:1})+"\\n"),200);setTimeout(()=>appendFileSync(p,JSON.stringify({isBot:true,userId:"bot_x",roomId:"r1",seq:2})+"\\n{\\"isBot\\":tr"),500);', path, {timeoutMs: 5000});
+    shell('node', '-e', 'const {appendFileSync}=require("node:fs");const p=process.argv[1];appendFileSync(p,JSON.stringify({roomId:"r1",userId:"human",isBot:false})+"\\n");setTimeout(()=>appendFileSync(p,JSON.stringify({isBot:true,userId:"bot_x",roomId:"r1",seq:1})+"\\n"),200);setTimeout(()=>appendFileSync(p,JSON.stringify({isBot:true,userId:"bot_x",roomId:"r1",seq:2})+"\\n{\\"isBot\\":tr"),500);', path, {timeoutMs: 5000});
   });
 
   step("waitForJsonLine matches by keys and hands the line back parsed", () => {

@@ -9,6 +9,8 @@
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { scratchDir } from "./fixtures/scratch.mjs";
+
 // The PROJECT root, one level up: this file lives in the suite package
 // (`unotest/`), and every path below is written relative to the project —
 // which is also what `shellCwd` has to be.
@@ -35,7 +37,9 @@ export default {
   ],
   sandbox: {
     apiBaseUrl: process.env.APP_API_BASE_URL ?? "https://fixtures.unotest.com",
-    database: `sqlite:${join(root, "unotest/fixtures/db/dogfood.sqlite")}`,
+    // Seeded by `prepare` (unotest/fixtures/db/seed.mjs) into the suite's
+    // scratch directory — on a box the sources are read-only.
+    database: `sqlite:${join(scratchDir(root), "dogfood.sqlite")}`,
     uploadDir: join(root, "unotest/fixtures/files"),
     shellCwd: root,
   },

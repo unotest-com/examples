@@ -8,12 +8,18 @@
 // before every run, so a scenario always starts from the same rows.
 
 import { mkdirSync, rmSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import Database from "better-sqlite3";
 
-const here = dirname(fileURLToPath(import.meta.url));
-export const DB_PATH = resolve(here, "dogfood.sqlite");
+import { scratchDir } from "../scratch.mjs";
+
+// The project root is two levels up (unotest/fixtures/db → unotest → root);
+// the file lands in the suite's scratch directory, never among the sources:
+// on a box those are read-only, and a fixture written into the bundle would
+// be the next run's input.
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
+export const DB_PATH = join(scratchDir(root), "dogfood.sqlite");
 
 const SEED_WIDGETS = [
   { sku: "W-100", name: "Bracket", qty: 4, status: "active" },

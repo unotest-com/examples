@@ -1,0 +1,8 @@
+# The isolation probe, alone. Run by hand on the lab box (a `--once` tick
+# or a CI push with `--collection isolation`) while accepting
+# docs/testing/run-isolation.md — never in the hourly dogfood tick: before
+# isolation the probe leaves (and removes) files in the bundle's own
+# sources, and its answers are read by a person, not by an assertion.
+scenarios:
+  - sandbox/isolation-probe
+  - sandbox/isolation-limits
