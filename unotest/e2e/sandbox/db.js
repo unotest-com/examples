@@ -1,5 +1,8 @@
-// Database primitives against the sqlite fixture
-// (unotest/fixtures/db/dogfood.sqlite, seeded by its seed.mjs).
+// Database primitives against the sqlite fixture seeded by
+// unotest/fixtures/db/seed.mjs. The file itself lives in the suite's
+// scratch directory, not among the sources: on a box the sources are
+// mounted read-only, and a fixture written back into the bundle would
+// be the next run's input.
 // The seeded rows are read-only reference data; everything this scenario
 // writes is tagged with a run-scoped sku and removed again, so two runs
 // never see each other's rows.

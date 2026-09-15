@@ -1,6 +1,6 @@
 {
   "name": "unotest-examples-suite",
-  "version": "0.33.0",
+  "version": "0.35.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,8 +8,8 @@
     "setup": "node scripts/setup.mjs"
   },
   "dependencies": {
-    "@unotest/web": "0.33.0",
-    "@unotest/judge": "0.33.0",
+    "@unotest/web": "0.35.0",
+    "@unotest/judge": "0.35.0",
     "better-sqlite3": "^12.11.1"
   }
 }
