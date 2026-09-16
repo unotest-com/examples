@@ -1,0 +1,6 @@
+# The Picker probe, alone. Run by hand on the lab box while accepting
+# stage 6 of the fleet (section 19 of docs/testing/grounder-providers.md):
+# what a run sees of the Picker is a property of the BOX, not of the
+# suite, so it never belongs in the hourly dogfood tick.
+scenarios:
+  - sandbox/picker-probe
