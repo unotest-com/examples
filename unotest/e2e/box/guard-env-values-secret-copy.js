@@ -7,8 +7,8 @@
 // the pinned contract is: the `copied` tag flashes, no error notice, the
 // value never appears on the page, and the audit carries how=copy.
 function test_guard_env_values_secret_copy() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("Add a secret", () => {
     flow_guard_open_env_values("dogfood", "prod");

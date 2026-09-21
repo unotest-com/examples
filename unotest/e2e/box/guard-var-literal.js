@@ -8,8 +8,8 @@
 // string, so this file is green; the explore layer used to turn the same
 // literal into the secret's value (assertText expected "lab").
 function test_guard_var_literal() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("A key named like a variable", () => {
     flow_guard_open_env_values("dogfood", "prod");

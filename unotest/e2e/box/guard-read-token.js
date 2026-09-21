@@ -6,16 +6,14 @@
 // a live credential writes it into its own journal and screenshots. What
 // is asserted is that the page shows one exactly once, and never again.
 function test_guard_read_token() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
 
   step("Open Read tokens", () => {
     goto('/_guard/tokens');
     assertVisible(getByRole('heading', {name: 'Read tokens', exact: true}));
-    assertVisible(getByRole('columnheader', {name: 'Label', exact: true}));
-    assertVisible(getByRole('columnheader', {name: 'Last used', exact: true}));
-    assertVisible(getByRole('columnheader', {name: 'Status', exact: true}));
+    assertVisible(getByLabel('Token label'));
   });
 
   step("Mint one: the value is shown, once, with a way to copy it", () => {
@@ -38,6 +36,13 @@ function test_guard_read_token() {
   step("Coming back shows the label and never the value again", () => {
     goto('/_guard/tokens');
     assertCount(locator('.notice'), 0);
+    // The columns are checked HERE and not on arrival: a box with no
+    // tokens yet renders "No read tokens yet." and no table at all, so
+    // asserting them before minting one tests the stand's history rather
+    // than the page.
+    assertVisible(getByRole('columnheader', {name: 'Label', exact: true}));
+    assertVisible(getByRole('columnheader', {name: 'Last used', exact: true}));
+    assertVisible(getByRole('columnheader', {name: 'Status', exact: true}));
     row = getByRole('row').filter({hasText: label});
     assertCount(row, 1);
     assertVisible(row.getByRole('button', {name: 'revoke', exact: true}));

@@ -5,8 +5,8 @@
 // Needs two projects on the box (box-lab: dogfood + demo, both with a
 // bundle) — with one project the Project field is hidden by design.
 function test_guard_environments() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("Picker shows Project and Environment", () => {
     assertVisible(getByLabel("Project", {exact: true}));

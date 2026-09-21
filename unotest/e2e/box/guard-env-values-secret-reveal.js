@@ -5,8 +5,8 @@
 // Steps were exercised live through explore_steps; written by hand because
 // the recorder cannot render css+role chains.
 function test_guard_env_values_secret_reveal() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("Add a secret", () => {
     flow_guard_open_env_values("dogfood", "prod");

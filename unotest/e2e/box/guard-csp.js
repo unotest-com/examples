@@ -46,7 +46,7 @@ function test_guard_csp() {
         await fetch(base + "/_guard/logout", { method: "POST", redirect: "manual", headers: { cookie: jar() } });
         console.log(JSON.stringify(out));
       })().catch((e) => { console.error(e); process.exit(1); });
-    `, APP_BASE_URL, "ivan", BOX_LAB_PASSWORD);
+    `, APP_BASE_URL, guard_admin_user(), BOX_LAB_PASSWORD);
     report = probe.stdout;
   });
   step("Pages carry a nonce CSP", () => {

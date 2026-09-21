@@ -6,13 +6,17 @@
 // at a local stand instead of a deployed box. Recorded live against the
 // page; the locators are the ones flow_guard_login uses.
 function test_guard_login() {
-  step("Sign in to the box as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in to the box as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("Header names the box and the user", () => {
     assertText(getByText(/^unotest/), "unotest", {exact: false});
-    assertText(locator(".who"), "ivan", {exact: false});
-    assertText(locator(".who").getByText("admin", {exact: true}), "admin", {exact: true});
+    // The account is called `admin` and its ROLE is admin too, so the two
+    // read the same in the header. Checked as two different nodes on
+    // purpose: one assertion on the word would pass while either half was
+    // missing.
+    assertText(locator(".who"), guard_admin_user(), {exact: false});
+    assertText(locator(".who .tag"), "admin", {exact: true});
     assertVisible(getByRole("link", {name: "Administration", exact: true}));
     assertVisible(getByRole("button", {name: "Log out", exact: true}));
   });

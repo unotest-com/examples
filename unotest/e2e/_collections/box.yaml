@@ -1,0 +1,65 @@
+# The guard scenarios of a box, alone. Run by hand against the box-lab
+# stand — never in the hourly dogfood tick: they sign in to the BOX's own
+# guard (`unotest/.env.lab` aims them at http://localhost:8088), not at
+# the application under test, and a box is a stand somebody raised, not a
+# service that is always up.
+#
+#   UNOTEST_ENV=lab npx @unotest/web collection box
+#
+# `unotest-web collection` has no `--env` flag (run-collection.ts parses
+# headed/bail/debug/scheduled/no-prepare/workers and nothing else), so the
+# environment is named the only way it takes: UNOTEST_ENV in front.
+#
+# `ro-login` is deliberately NOT here: it signs in to the deployed dogfood
+# box, not to the stand, and a collection that mixes the two would point
+# half its run at a live machine.
+#
+# THE ORDER MATTERS, and `guard-login-error` is last on purpose (qa,
+# 2026-09-21 — it used to be second). The box throttles its own login:
+# 10 requests under /_guard/login per 60s per client. The number is a
+# schema default (private/guard/src/config/schema.ts, `loginRateLimit`),
+# not a stand setting, and the live stand answers 302 ten times and then
+# 429.
+#
+# What makes one scenario special is not its price but WHERE the reset
+# goes: a SUCCESSFUL sign-in clears the client's window
+# (guard-server.ts, `loginLimiter.reset` right after the session is
+# issued — "someone who mistyped a password twice should not still be
+# counting down once they get it right"). Fourteen of these scenarios
+# sign in successfully, so each one clears the window on its way in and
+# leaves nothing behind for the next.
+#
+# `guard-login-error` never signs in successfully — that is its subject —
+# so it has nothing to reset with, and its two refusals spend 8 of the
+# 10 (measured: run it, then count requests until 429). The scenarios it
+# starves are the ones AFTER it: they need 2 to sign in, do not get
+# them, fail before the username field exists, and cannot reset either.
+# The window does not come back all at once — it relaxes by a slot at a
+# time — so the chain does not recover inside one run. With the refusal
+# second, a single run gave pass=2 fail=13; with it last, pass=13 fail=2,
+# and the two reds are the empty-box ones below.
+#
+# So: the whole collection runs in ONE go. If you run the refusal
+# scenario by hand, pause longer than a minute AFTER it, not before —
+# it is the following sign-ins that go hungry.
+#
+# On a box with no bundle, `guard-login` and `guard-environments` are
+# red by the state of the stand, not by a defect: they wait for the
+# environments picker and an empty box says "This box has not been sent
+# a test suite yet".
+scenarios:
+  - box/guard-login
+  - box/guard-admin
+  - box/guard-environments
+  - box/guard-csp
+  - box/guard-read-token
+  - box/guard-var-literal
+  - box/guard-sessions-cleanup
+  - box/guard-env-values-table
+  - box/guard-env-values-json-view
+  - box/guard-env-values-json-save
+  - box/guard-env-values-inline-edit
+  - box/guard-env-values-remove
+  - box/guard-env-values-secret-copy
+  - box/guard-env-values-secret-reveal
+  - box/guard-login-error

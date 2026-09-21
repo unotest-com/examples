@@ -7,8 +7,8 @@
 // string surgery for that. evaluate only computes the text; the page is
 // driven through fill/click like everywhere else.
 function test_guard_env_values_json_save() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("Add two variables and a secret", () => {
     flow_guard_open_env_values("dogfood", "prod");

@@ -2,8 +2,8 @@
 // Guard: Values — remove a box variable, audited
 // #4287f5
 function test_guard_env_values_remove() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("Add a variable", () => {
     flow_guard_open_env_values("dogfood", "prod");

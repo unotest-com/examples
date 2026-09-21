@@ -6,8 +6,8 @@
 // leave sessions behind. Ends all but the current one and checks the
 // table is down to that one row.
 function test_guard_sessions_cleanup() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("End every other session", () => {
     flow_guard_kill_other_sessions();

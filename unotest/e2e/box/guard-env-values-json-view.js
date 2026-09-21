@@ -6,8 +6,8 @@
 // the recorder cannot render css+role chains. The textarea content is read
 // with inputValue: the script writes `.value`, so its text content is empty.
 function test_guard_env_values_json_view() {
-  step("Sign in as ivan", () => {
-    flow_guard_login("ivan", BOX_LAB_PASSWORD);
+  step("Sign in as admin", () => {
+    flow_guard_admin_login(BOX_LAB_PASSWORD);
   });
   step("Add a variable and a secret", () => {
     flow_guard_open_env_values("dogfood", "prod");
@@ -50,7 +50,15 @@ function test_guard_env_values_json_view() {
     assertHidden(getByRole("button", {name: "Save", exact: true}));
   });
   step("One audit record lists every secret", () => {
-    assertVisible(guard_audit_row("secret.revealed", ", " + secretName + " (show)"));
+    // Matched by the name alone, not by ", NAME (show)": that form only
+    // matches while this run's secret happens to be LAST in the list, and
+    // the list holds whatever else the environment carries — including
+    // leftovers of a run that died before its cleanup.
+    revealed = guard_audit_row("secret.revealed", secretName);
+    assertCount(revealed, 1);
+    // One record for the whole reveal, not one per secret: the record
+    // names more than this run's secret.
+    assertText(revealed, ", ", {exact: false});
   });
   step("Clean up", () => {
     flow_guard_open_env_values("dogfood", "prod");
