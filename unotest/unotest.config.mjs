@@ -16,8 +16,23 @@ import { scratchDir } from "./fixtures/scratch.mjs";
 // which is also what `shellCwd` has to be.
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
+// #8: the extension fixture, loaded only when scripts/dogfood-extension.mjs
+// asks for it. Every other dogfood run starts a plain browser. The profile
+// directory is NOT named here: the script creates it, passes it as
+// UNOTEST_USER_DATA_DIR and removes it — a config does no work on import.
+const extension = join(root, "unotest/fixtures/extension");
+const extensionLaunch =
+  process.env.DOGFOOD_EXTENSION === "1"
+    ? {
+        launch: {
+          args: [`--disable-extensions-except=${extension}`, `--load-extension=${extension}`],
+        },
+      }
+    : {};
+
 /** @type {Partial<import('@unotest/web').UnotestConfig>} */
 export default {
+  ...extensionLaunch,
   // What should run on its own, declared next to the tests it runs and
   // travelling with them. Nothing in @unotest/web executes this: cron is
   // run by the box that hosts the suite (see `docs/testing/dogfood.md`);

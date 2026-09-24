@@ -1,0 +1,5 @@
+# #8: the browser launched with the extension fixture. Needs `launch`,
+# which unotest.config.mjs turns on only under DOGFOOD_EXTENSION=1 — run it
+# with `pnpm dogfood:extension`, never on its own.
+scenarios:
+  - extension/marker

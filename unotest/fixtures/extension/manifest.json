@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "unotest extension fixture",
+  "version": "1.0.0",
+  "description": "Dogfood fixture for #8: proves the browser was launched with an extension. Adds one marker node to the page.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://playground.unotest.com/*",
+        "http://localhost/*",
+        "http://127.0.0.1/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
