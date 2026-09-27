@@ -2,7 +2,12 @@
 // whatever APP_BASE_URL points at — the local box-lab stand with
 // `--env lab` (unotest/.env.lab), a real box otherwise. Passwords come
 // from unotest/.secrets (BOX_LAB_PASSWORD, BOX_RO_PASSWORD).
-function flow_guard_login(username, password) {
+// Only the sign-in. Where the box lands afterwards is its own decision:
+// with #206 a box with a SINGLE environment opens that environment's
+// viewer straight away, while a box with more keeps the Environments
+// screen. So the wait here is the sign-in itself — the form is gone —
+// and never a particular screen behind it.
+function flow_guard_sign_in(username, password) {
   // /_guard/ redirects an anonymous visitor to the primary identity
   // provider; on the stand that is break-glass, so the password form
   // is the landing page.
@@ -10,6 +15,18 @@ function flow_guard_login(username, password) {
   fill(getByPlaceholder('username', {exact: true}), username);
   fill(getByPlaceholder('password', {exact: true}), password);
   click(getByRole('button', {name: 'Log in', exact: true}));
+  waitFor(getByRole('button', {name: 'Log in', exact: true}), {state: 'hidden'});
+}
+
+// Sign in AND land on the box's own pages — what every scenario about
+// Administration, Values or the picker wants. The `goto` is not a
+// workaround: `/_guard/` always renders the Environments screen by
+// decision of #206, whatever the box did right after the sign-in.
+// Scenarios that check where the sign-in ITSELF lands use
+// `flow_guard_sign_in` instead.
+function flow_guard_login(username, password) {
+  flow_guard_sign_in(username, password);
+  goto('/_guard/');
   waitFor(getByRole('heading', {name: 'Environments', exact: true}));
 }
 
