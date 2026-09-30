@@ -1,7 +1,7 @@
 # fixtures.unotest.com — образ HTTP-фикстуры dogfood-набора.
 #
 # Зависимостей у server.mjs нет (только node:http и node:crypto),
-# поэтому здесь нет ни install, ни сборки: копируем файл и запускаем.
+# поэтому здесь нет ни install, ни сборки: копируем файлы и запускаем.
 # Если однажды появится dependency — это повод остановиться и подумать,
 # а не добавлять сюда `npm i`: фикстура обязана стартовать на голом Node.
 #
@@ -9,7 +9,7 @@
 FROM node:22-alpine
 
 WORKDIR /app
-COPY server.mjs package.json ./
+COPY server.mjs support-thread.mjs package.json ./
 
 # uid 1000 = пользователь node из базового образа; тот же uid стоит в
 # securityContext деплоя (gitops/apps/fixtures/deployment.yaml).

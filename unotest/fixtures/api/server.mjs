@@ -18,6 +18,8 @@
 import { createServer } from "node:http";
 import { createHash, randomUUID } from "node:crypto";
 
+import { supportRoute } from "./support-thread.mjs";
+
 const PORT = Number(process.env.PORT ?? 8787);
 const HOST = process.env.HOST ?? "127.0.0.1";
 const ITEM_TTL_MS = Number(process.env.ITEM_TTL_MS ?? 60 * 60 * 1000);
@@ -124,6 +126,8 @@ const STARTED_AT = Date.now();
 
 async function route(req, res, url) {
   const path = url.pathname.replace(/\/+$/, "") || "/";
+
+  if (await supportRoute(req, res, path, readBody)) return;
 
   if (req.method === "GET" && (path === "/" || path === "/health")) {
     return send(res, 200, {

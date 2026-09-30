@@ -32,9 +32,15 @@ scenarios:
   - dashboard/settings
   - dashboard/checkout
   - misc/time-helpers
+  - misc/strings-indexes-objects
+  - misc/teardown
+  - misc/visual-assert
   - misc/evaluate
   - misc/generators
   - misc/random-nth-and-screenshot
+  - misc/set-viewport
+  - misc/page-clock
+  - misc/two-contexts
   - negative/window-asserts
   - sandbox/db
   - sandbox/shell
