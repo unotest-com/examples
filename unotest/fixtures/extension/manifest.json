@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "unotest extension fixture",
   "version": "1.0.0",
-  "description": "Dogfood fixture for #8: proves the browser was launched with an extension. Adds one marker node to the page.",
+  "description": "Dogfood fixture: a content script that adds one marker node to the page (#8), and a service worker with storage, tabs and a popup (#288).",
   "content_scripts": [
     {
       "matches": [
@@ -13,5 +13,9 @@
       "js": ["content.js"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "background": { "service_worker": "sw.js" },
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://api.unotest.test/*"],
+  "action": { "default_popup": "popup.html" }
 }

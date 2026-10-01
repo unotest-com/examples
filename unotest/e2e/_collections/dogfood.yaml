@@ -18,7 +18,11 @@ scenarios:
   - iframes/deep-form
   - clicks/dblclick
   - clicks/popup-set-page
+  - tabs/wait-for-page
+  - tabs/bring-to-front
+  - tabs/new-close-page
   - file-upload/attach
+  - downloads/wait-for-download
   - drag-drop/reorder
   - ws-live/cross-tab
   - catalog/traps
@@ -40,6 +44,9 @@ scenarios:
   - misc/random-nth-and-screenshot
   - misc/set-viewport
   - misc/page-clock
+  - locators/geometry-and-evaluate
+  - wait-until/polling
+  - network-mock/mock-route
   - misc/two-contexts
   - negative/window-asserts
   - sandbox/db
@@ -52,3 +59,6 @@ scenarios:
   - data-driven/soft-steps-tagged
   - data-driven/annotations
   - data-driven/nested-helpers
+  - read-json/constants
+  - values/parse-values
+  - read-file/files

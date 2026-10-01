@@ -1,0 +1,42 @@
+{
+  "labels": {
+    "siteTab": "Сайт",
+    "chatTab": "Чат",
+    "quiet": "В чате пока тихо",
+    "loading": "Последнее сообщение…"
+  },
+  "state": {
+    "injected": "чат на странице",
+    "removed": "чат убран",
+    "preset-not-found": "для этого сайта пресета нет",
+    "anchor-not-found": "элемент для якоря не найден на странице",
+    "no-active-tab": "в этом окне нет активной вкладки",
+    "needs-site-tab": "не видно адрес вкладки — переоткрой её и повтори",
+    "unsupported-page": "открой вкладку с сайтом клиента и повтори",
+    "nothing-to-resume": "на этом сайте ещё ничего не показывали",
+    "chat-not-configured": "сначала вставьте ссылку на чат в настройках",
+    "token-missing": "впиши токен демо в разделе «Demo Service»",
+    "site-access-denied": "нет доступа к сайту, разреши в диалоге Chrome",
+    "stage-not-ready": "сцена ещё не открыла сайт — подожди и повтори",
+    "chat-not-shown": "чата на странице нет — сначала покажи чат",
+    "failed": "не получилось — смотри консоль расширения"
+  },
+  "devices": [
+    {
+      "id": "iphone",
+      "label": "iPhone (Safari)",
+      "frame": {
+        "width": 440,
+        "height": 956
+      }
+    },
+    {
+      "id": "android",
+      "label": "Android (Pixel 7, Chrome)",
+      "frame": {
+        "width": 412,
+        "height": 839
+      }
+    }
+  ]
+}

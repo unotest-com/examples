@@ -1,0 +1,6 @@
+# #305: the real browser window. Needs `viewport: null` and --window-size,
+# which unotest.config.mjs turns on only under DOGFOOD_VIEWPORT_NULL=1 —
+# run it as `DOGFOOD_VIEWPORT_NULL=1 node packages/web/bin/unotest-web.js
+# collection viewport`, never on its own.
+scenarios:
+  - viewport/real-window

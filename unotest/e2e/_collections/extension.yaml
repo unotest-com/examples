@@ -3,3 +3,4 @@
 # with `pnpm dogfood:extension`, never on its own.
 scenarios:
   - extension/marker
+  - extension/service-worker

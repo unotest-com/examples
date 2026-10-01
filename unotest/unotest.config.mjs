@@ -30,9 +30,18 @@ const extensionLaunch =
       }
     : {};
 
+// #305: the real browser window, no size emulation — the `viewport`
+// collection under DOGFOOD_VIEWPORT_NULL=1. Headless has no window
+// manager, so the window is the size --window-size gives it.
+const realWindow =
+  process.env.DOGFOOD_VIEWPORT_NULL === "1"
+    ? { viewport: null, launch: { args: ["--window-size=1000,700"] } }
+    : {};
+
 /** @type {Partial<import('@unotest/web').UnotestConfig>} */
 export default {
   ...extensionLaunch,
+  ...realWindow,
   // What should run on its own, declared next to the tests it runs and
   // travelling with them. Nothing in @unotest/web executes this: cron is
   // run by the box that hosts the suite (see `docs/testing/dogfood.md`);

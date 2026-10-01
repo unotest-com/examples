@@ -1,0 +1,10 @@
+{
+  "hub": {
+    "title": "Stress-test browser",
+    "pages": [
+      { "id": "clicks", "path": "/scenarios/clicks", "marker": { "text": "Click me" } },
+      { "id": "drag-drop", "path": "/scenarios/drag-drop", "marker": { "text": "Backlog" } }
+    ]
+  },
+  "limits": { "maxTabs": 3, "beta": null }
+}
