@@ -1,0 +1,7 @@
+# #295: `launch.profile: "per-test"`, one test_* per file, run in this
+# order. Needs `launch` (DOGFOOD_EXTENSION=1) and DOGFOOD_PER_TEST=1 — run
+# it with `pnpm dogfood:extension`, never on its own.
+scenarios:
+  - extension/per-test-profile/first-leaves-storage
+  - extension/per-test-profile/second-finds-storage-empty
+  - extension/per-test-profile/third-mocks-worker-fetch

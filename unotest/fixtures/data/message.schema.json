@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://playground.unotest.com/schemas/message.json",
+  "title": "Chat message",
+  "type": "object",
+  "required": ["room", "text", "tags"],
+  "additionalProperties": false,
+  "properties": {
+    "room": { "type": "integer", "minimum": 1 },
+    "text": { "type": "string", "minLength": 1 },
+    "tags": { "type": "array", "items": { "$ref": "#/$defs/tag" } }
+  },
+  "$defs": {
+    "tag": { "type": "string", "pattern": "^[a-z]+$" }
+  }
+}

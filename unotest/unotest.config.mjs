@@ -21,11 +21,13 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 // directory is NOT named here: the script creates it, passes it as
 // UNOTEST_USER_DATA_DIR and removes it — a config does no work on import.
 const extension = join(root, "unotest/fixtures/extension");
+// #295: DOGFOOD_PER_TEST=1 adds a new profile per test_* on top of it.
 const extensionLaunch =
   process.env.DOGFOOD_EXTENSION === "1"
     ? {
         launch: {
           args: [`--disable-extensions-except=${extension}`, `--load-extension=${extension}`],
+          ...(process.env.DOGFOOD_PER_TEST === "1" ? { profile: "per-test" } : {}),
         },
       }
     : {};
@@ -65,6 +67,13 @@ export default {
     // scratch directory — on a box the sources are read-only.
     database: `sqlite:${join(scratchDir(root), "dogfood.sqlite")}`,
     uploadDir: join(root, "unotest/fixtures/files"),
+    // The sandbox scenarios (wait-for-file, file-oracle, window-asserts)
+    // have a shell() writer leave a file and an oracle read it back. On a
+    // box the sources are read-only and the writer goes to /tmp, outside
+    // the project, where the oracles read only from a root listed here.
+    // Locally the scratch dir is inside the project and this changes
+    // nothing.
+    readRoots: [scratchDir(root)],
     shellCwd: root,
   },
 };

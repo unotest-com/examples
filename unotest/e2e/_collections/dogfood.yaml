@@ -23,6 +23,7 @@ scenarios:
   - tabs/new-close-page
   - file-upload/attach
   - downloads/wait-for-download
+  - console/console-entries
   - drag-drop/reorder
   - ws-live/cross-tab
   - catalog/traps
@@ -60,5 +61,11 @@ scenarios:
   - data-driven/annotations
   - data-driven/nested-helpers
   - read-json/constants
+  - schema/message-schema
+  - env/env-optional
+  - skip/skip-when-unset
+  - skip/runs-when-set
+  - timeout/set-test-timeout
   - values/parse-values
   - read-file/files
+  - assertions/matchers
