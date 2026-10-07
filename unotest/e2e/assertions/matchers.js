@@ -1,4 +1,4 @@
-// Assertions with a regex, a list, an attribute and {not}. A data: page
+// Assertions with a regex, a list, an attribute, a URL and {not}. A data: page
 // keeps the state under test in the scenario: a list, a menu button whose
 // aria-expanded flips on click, and a status that changes from "Saving…"
 // to "Saved" a moment after load, so {not} has something to wait for.
@@ -26,5 +26,14 @@ function test_assert_matchers() {
     assertAttribute(getByRole('button', {name: 'Menu'}), 'aria-expanded', 'true');
     assertAttribute(getByRole('button', {name: 'Menu'}), 'aria-expanded', 'false', {not: true});
     assertAttribute(getByRole('link', {name: 'Docs'}), 'href', /\/docs\//);
+  });
+
+  // A data: page cannot navigate by a link, so the URL under test is a
+  // second data: page whose markup carries the path.
+  step("A URL by regex, waited for and asserted; a string still a substring", () => {
+    goto("data:text/html;charset=utf-8,<p>/cars/42</p>");
+    waitForUrl(/\/cars\/\d+/);
+    assertUrl(/^data:text\/html.*\/cars\/\d+/);
+    assertUrl('/cars/42');
   });
 }

@@ -44,8 +44,11 @@ scenarios:
   - misc/generators
   - misc/random-nth-and-screenshot
   - misc/set-viewport
+  - misc/emulate-media
   - misc/page-clock
   - locators/geometry-and-evaluate
+  - locators/computed-style
+  - locators/animations
   - wait-until/polling
   - network-mock/mock-route
   - misc/two-contexts
@@ -67,5 +70,6 @@ scenarios:
   - skip/runs-when-set
   - timeout/set-test-timeout
   - values/parse-values
+  - values/string-escapes
   - read-file/files
   - assertions/matchers

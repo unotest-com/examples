@@ -4,3 +4,4 @@
 scenarios:
   - extension/marker
   - extension/service-worker
+  - extension/mock-route
