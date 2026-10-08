@@ -25,8 +25,12 @@ function test_generators_produce_usable_fixture_data() {
     click(getByRole('button', {name: 'New user'}));
     fill(getByLabel('Name'), first + ' ' + last);
     fill(getByLabel('Email'), mail);
+    // The polling asserts take {timeout} / {timeoutMs}, as waitForCount does.
+    assertValue(getByLabel('Email'), mail, {timeout: 5000});
     click(getByRole('button', {name: 'Create user'}));
+    assertHidden(getByRole('button', {name: 'Create user'}), {timeoutMs: 8000});
+    assertVisible(getByLabel('Search users'), {timeout: 8000});
     fill(getByLabel('Search users'), mail);
-    assertCount(getByRole('row').filter({hasText: mail}), 1);
+    assertCount(getByRole('row').filter({hasText: mail}), 1, {timeoutMs: 8000});
   });
 }

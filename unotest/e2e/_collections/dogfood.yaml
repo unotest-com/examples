@@ -33,11 +33,13 @@ scenarios:
   - dashboard/login
   - dashboard/users-crud
   - dashboard/users-sorting-pagination
+  - dashboard/users-ported-spec
   - dashboard/wizard
   - dashboard/settings
   - dashboard/checkout
   - misc/time-helpers
   - misc/strings-indexes-objects
+  - misc/unary-not-array-append
   - misc/teardown
   - misc/visual-assert
   - misc/evaluate
@@ -61,6 +63,7 @@ scenarios:
   - sandbox/assert-judge
   - data-driven/pages-from-jsonl
   - data-driven/soft-steps-tagged
+  - data-driven/cases-table-and-jsonl
   - data-driven/annotations
   - data-driven/nested-helpers
   - read-json/constants
