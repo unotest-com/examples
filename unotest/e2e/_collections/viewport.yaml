@@ -1,6 +1,8 @@
-# #305: the real browser window. Needs `viewport: null` and --window-size,
-# which unotest.config.mjs turns on only under DOGFOOD_VIEWPORT_NULL=1 —
-# run it as `DOGFOOD_VIEWPORT_NULL=1 node packages/web/bin/unotest-web.js
-# collection viewport`, never on its own.
+# #305 / #373: the real browser window. The collection's `viewport: null`
+# replaces the project's emulated size for every scenario it runs; the
+# same scenario run on its own stays emulated and fails — the control.
+# No --window-size: `launch` is refused on a box, and the window's own
+# size is not what the scenario checks.
+viewport: null
 scenarios:
   - viewport/real-window

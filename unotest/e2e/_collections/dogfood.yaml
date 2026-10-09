@@ -67,6 +67,8 @@ scenarios:
   - data-driven/annotations
   - data-driven/nested-helpers
   - read-json/constants
+  - generate/app-constants
+  - tests-per-file/all-green
   - schema/message-schema
   - env/env-optional
   - skip/skip-when-unset

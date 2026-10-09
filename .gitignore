@@ -7,5 +7,7 @@ unotest/.runs*/
 unotest/.tmp/
 unotest/.viewer.lock
 unotest/fixtures/db/*.sqlite
+# written by the config's `generate` before each run and push
+unotest/generated/
 # generated editor-typings cache (unotest-web types / lint recreate it)
 .unotest/
