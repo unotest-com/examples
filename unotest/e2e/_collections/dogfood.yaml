@@ -22,6 +22,7 @@ scenarios:
   - tabs/bring-to-front
   - tabs/new-close-page
   - file-upload/attach
+  - file-upload/image-size
   - downloads/wait-for-download
   - console/console-entries
   - drag-drop/reorder
