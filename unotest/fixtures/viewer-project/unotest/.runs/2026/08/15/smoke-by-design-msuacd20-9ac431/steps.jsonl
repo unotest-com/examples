@@ -3,4 +3,4 @@
 {"kind":"step:ok","t":1786792880193,"durationMs":3}
 {"kind":"step:started","t":1786792880194,"file":"unotest/e2e/smoke/by-design.js","line":12,"col":5}
 {"kind":"step:fail","t":1786792881420,"error":"locator.waitFor: Timeout 1200ms exceeded.","errorName":"TimeoutError"}
-{"kind":"run:finished","t":1786792881421,"outcome":"failed"}
+{"kind":"run:finished","t":1786792881421,"outcome":"failed","expectFail":true}

@@ -41,6 +41,7 @@ scenarios:
   - misc/time-helpers
   - misc/strings-indexes-objects
   - misc/unary-not-array-append
+  - misc/ternary
   - misc/teardown
   - misc/visual-assert
   - misc/evaluate
@@ -52,6 +53,9 @@ scenarios:
   - locators/geometry-and-evaluate
   - locators/computed-style
   - locators/animations
+  - locators/checked-state
+  - locators/texts
+  - locators/role-options
   - wait-until/polling
   - network-mock/mock-route
   - misc/two-contexts
