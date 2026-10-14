@@ -19,7 +19,7 @@ function test_isolation_limits_report_pids_and_tmp_exec() {
     // retries for minutes, while node's spawn reports EAGAIN per child and
     // carries on. The cgroup files say how many pids are live and how often
     // the limit bit; every child is killed before the next probe.
-    probe_note('fork-burst', shell('node', '-e', `
+    probe_note('fork-burst', shell('node', '-e', String.raw`
       const { spawn } = require("node:child_process");
       const { readFileSync } = require("node:fs");
       const cg = (f) => { try { return readFileSync("/sys/fs/cgroup/" + f, "utf8").trim().replace(/\s+/g, " "); } catch { return "unknown"; } };

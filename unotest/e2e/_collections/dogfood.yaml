@@ -81,5 +81,19 @@ scenarios:
   - timeout/set-test-timeout
   - values/parse-values
   - values/string-escapes
+  # #440: the scenario language (ES2020); their out-of-language pairs are
+  # in unotest/fixtures/out-of-language/, run by pnpm dogfood:expect-fail.
+  - language/closures
+  - language/destructuring
+  - language/try-catch
+  - language/control-flow
+  - language/operators
+  - language/return-in-test
+  - language/library
+  # Workarounds from client feedback, rewritten in plain JS.
+  - feedback-rewrites/amount-nbsp
+  - feedback-rewrites/json-metric
+  - feedback-rewrites/rows-by-condition
+  - feedback-rewrites/page-code-status-rows
   - read-file/files
   - assertions/matchers

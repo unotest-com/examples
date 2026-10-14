@@ -2,12 +2,13 @@
   "compilerOptions": {
     "checkJs": false,
     "target": "es2022",
-    "lib": ["es2022"],
+    "noLib": true,
     "types": []
   },
   "include": [
     "**/*.js",
     "../.unotest/types/env.d.ts",
+    "./node_modules/@unotest/web/types/unotest-lib.d.ts",
     "./node_modules/@unotest/web/types/unotest-dsl.d.ts"
   ]
 }

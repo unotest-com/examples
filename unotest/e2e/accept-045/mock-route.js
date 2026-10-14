@@ -5,9 +5,12 @@
 // 500, read the roomIds the extension asked for). The site here is the
 // real playground, not a mocked page: its own origin must pass untouched.
 
+// The extension's own fetch to its prod API, as page code: a fixed
+// string, so no value of the scenario becomes code of the page.
+const ASK = "(room) => fetch('https://api.watchers.test/room/last-message/load', {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({roomIds: [room]})}).then(async (r) => ({status: r.status, text: await r.text()}))";
+
 function test_mock_route_on_the_pilot_path() {
   step("Allowlist: everything aborted and recorded, the site passes", () => {
-    ASK = "(room) => fetch('https://api.watchers.test/room/last-message/load', {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({roomIds: [room]})}).then(async (r) => ({status: r.status, text: await r.text()}))";
     mockRoute('**/*', {abort: true, record: true});
     mockRoute('https://playground.unotest.com/**', {continue: true});
     goto('/');
