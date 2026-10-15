@@ -12,6 +12,12 @@ function test_extension_service_worker() {
     assertTrue(textContains(sw, 'chrome-extension://' + id + '/'), 'worker: ' + sw);
   });
 
+  step("{url} picks the worker by its URL: sw.js comes back, another name times out", () => {
+    assertEqual(waitForServiceWorker({url: '/sw.js', timeoutMs: 5000}), sw);
+    const message = caught_message(() => waitForServiceWorker({url: '/no-such-worker.js', timeoutMs: 1000}));
+    assertTrue(textContains(message, 'no service worker matching "/no-such-worker.js" started within 1000 ms'), message);
+  });
+
   step("chrome.storage through the worker", () => {
     evaluateInServiceWorker('(theme) => chrome.storage.local.set({theme: theme})', 'dark');
     stored = evaluateInServiceWorker('() => chrome.storage.local.get("theme")');

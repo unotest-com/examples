@@ -9,6 +9,11 @@
 # button) gets the same environment. `--no-prepare` skips it for a run
 # against an environment somebody else prepared.
 prepare: "node unotest/fixtures/db/seed.mjs"
+# Two at a time: the box that runs this hourly has 4 vCPU and the stack
+# beside it. Every scenario that writes tags its rows, files and API items
+# with its own marker, so they share the fixtures. A local run takes more
+# with --workers=4 (pnpm dogfood:full).
+workers: 2
 scenarios:
   - hub/smoke
   - hub/navigation
@@ -25,6 +30,8 @@ scenarios:
   - file-upload/image-size
   - downloads/wait-for-download
   - console/console-entries
+  - mcp-client/mcp-client
+  - vm/lifecycle
   - drag-drop/reorder
   - ws-live/cross-tab
   - catalog/traps
@@ -49,22 +56,44 @@ scenarios:
   - misc/random-nth-and-screenshot
   - misc/set-viewport
   - misc/emulate-media
+  - page-hidden/chat-in-background
   - misc/page-clock
   - locators/geometry-and-evaluate
   - locators/computed-style
   - locators/animations
+  - animations-getter/list
+  - select-option/by-label-index
   - locators/checked-state
   - locators/texts
   - locators/role-options
   - wait-until/polling
   - network-mock/mock-route
   - misc/two-contexts
+  - browser-capabilities/passkey-permissions-offline
   - negative/window-asserts
+  - assert-never/condition-window
+  - idioms/api-call-timeout
+  - idioms/animations-list
+  - idioms/background-tab
+  - idioms/clipboard-paste
+  - clipboard/copy-button
+  - idioms/computed-style
+  - idioms/image-size
+  - idioms/never-appears
+  - idioms/never-condition
+  - idioms/page-code-function
+  - idioms/select-by-label
+  - idioms/wait-enabled
+  - idioms/wait-for-animations
+  - idioms/wait-until-value
   - sandbox/db
   - sandbox/shell
   - sandbox/wait-for-file
   - sandbox/file-oracle
+  - file-search/has-lacks
   - sandbox/api
+  - sandbox/api-timeout
+  - api-call-timeout/within-budget
   - sandbox/assert-judge
   - data-driven/pages-from-jsonl
   - data-driven/soft-steps-tagged
@@ -97,3 +126,41 @@ scenarios:
   - feedback-rewrites/page-code-status-rows
   - read-file/files
   - assertions/matchers
+  - option-keys/pointer
+  - option-keys/locators
+  - option-keys/navigation
+  - option-keys/form-actions
+  - option-keys/cookies
+  - option-keys/text-values
+  - option-keys/api-base
+  - option-keys/mcp-options
+  - option-keys/screenshots
+  - option-keys/await-empty
+  - websocket/sockets
+  # #449: red twins — each check called where it must fail, its message read.
+  - red-twins/page-assertions
+  - red-twins/file-assertions
+  - red-twins/page-signal-assertions
+  - red-twins/screenshot-assertions
+  - red-twins/locators/filters
+  - red-twins/locators/get-by-role
+  - red-twins/locators/text-builders
+  - red-twins/actions/form
+  - red-twins/actions/pointer
+  - red-twins/actions/select-option
+  - red-twins/actions/upload
+  - red-twins/waits/element-waits
+  - red-twins/waits/navigation
+  - red-twins/waits/page-signals
+  - red-twins/values
+  - red-twins/cookies
+  - red-twins/file-waits
+  - red-twins/page-state
+  - red-twins/passkeys
+  - red-twins/mcp-client
+  # Needs the fixture API, as sandbox/api does.
+  - red-twins/api-call
+  # Skips without Tart. red-twins/terminal is not here: it takes the
+  # keyboard and runs on macOS only, like terminal/terminal-app.
+  - red-twins/vm
+  - red-twins/websocket/sockets

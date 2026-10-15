@@ -3,6 +3,11 @@
 # button) gets the same environment. `--no-prepare` skips it for a run
 # against an environment somebody else prepared.
 prepare: "node unotest/fixtures/db/seed.mjs"
+# Two at a time: the box that runs this hourly has 4 vCPU and the stack
+# beside it. Every scenario that writes tags its rows, files and API items
+# with its own marker, so they share the fixtures. A local run takes more
+# with --workers=4 (pnpm dogfood:full).
+workers: 2
 scenarios:
   - hub/smoke
   - big-table/edit-dialog

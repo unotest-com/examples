@@ -25,6 +25,7 @@ const HOST = process.env.HOST ?? "127.0.0.1";
 const ITEM_TTL_MS = Number(process.env.ITEM_TTL_MS ?? 60 * 60 * 1000);
 const MAX_ITEMS = Number(process.env.MAX_ITEMS ?? 5_000);
 const MAX_BODY_BYTES = Number(process.env.MAX_BODY_BYTES ?? 2 * 1024 * 1024);
+const MAX_DELAY_MS = 10_000;
 
 /** id → item. Swept on every request; a restart is a legal reset. */
 const items = new Map();
@@ -124,6 +125,72 @@ function parseMultipart(buf, contentType) {
 
 const STARTED_AT = Date.now();
 
+// A page that opens a WebSocket to this server as it loads, and the socket
+// it talks to: `/ws` answers every text message with `echo: <text>`. For
+// waitForWebSocket (#539). A handshake and short unfragmented text frames
+// are all the page sends, so that is all this reads; a socket lives for at
+// most SOCKET_TTL_MS, the instance being public.
+const SOCKET_GUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
+const SOCKET_TTL_MS = 60_000;
+const MAX_SOCKET_FRAME = 64 * 1024;
+
+const SOCKET_PAGE = `<!doctype html>
+<title>socket</title>
+<p id="status">connecting</p>
+<script>
+  const scheme = location.protocol === "https:" ? "wss:" : "ws:";
+  const socket = new WebSocket(scheme + "//" + location.host + "/ws");
+  const status = document.getElementById("status");
+  socket.onopen = () => socket.send("ping");
+  socket.onmessage = (e) => (status.textContent = e.data);
+  socket.onerror = () => (status.textContent = "failed");
+</script>`;
+
+function textFrame(text) {
+  const payload = Buffer.from(text, "utf8");
+  const head = payload.length < 126
+    ? Buffer.from([0x81, payload.length])
+    : Buffer.from([0x81, 126, payload.length >> 8, payload.length & 0xff]);
+  return Buffer.concat([head, payload]);
+}
+
+/** The text of one masked client frame, or null when it is not one. */
+function readTextFrame(buf) {
+  if (buf.length < 6 || (buf[0] & 0x0f) !== 0x1 || (buf[1] & 0x80) === 0) return null;
+  let length = buf[1] & 0x7f;
+  let offset = 2;
+  if (length === 126) {
+    length = buf.readUInt16BE(2);
+    offset = 4;
+  } else if (length === 127) return null;
+  const mask = buf.subarray(offset, offset + 4);
+  const data = buf.subarray(offset + 4, offset + 4 + length);
+  return Buffer.from(data.map((byte, i) => byte ^ mask[i % 4])).toString("utf8");
+}
+
+function upgradeSocket(req, socket) {
+  const path = new URL(req.url ?? "/", "http://localhost").pathname;
+  const key = req.headers["sec-websocket-key"];
+  if (path !== "/ws" || typeof key !== "string") {
+    socket.end("HTTP/1.1 404 Not Found\r\n\r\n");
+    return;
+  }
+  const accept = createHash("sha1").update(key + SOCKET_GUID).digest("base64");
+  socket.write(
+    "HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\n" +
+      `Sec-WebSocket-Accept: ${accept}\r\n\r\n`,
+  );
+  const timer = setTimeout(() => socket.destroy(), SOCKET_TTL_MS);
+  socket.on("close", () => clearTimeout(timer));
+  socket.on("error", () => socket.destroy());
+  socket.on("data", (buf) => {
+    if (buf.length > MAX_SOCKET_FRAME) return socket.destroy();
+    if ((buf[0] & 0x0f) === 0x8) return socket.end();
+    const text = readTextFrame(buf);
+    if (text !== null) socket.write(textFrame(`echo: ${text}`));
+  });
+}
+
 async function route(req, res, url) {
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
@@ -179,6 +246,11 @@ async function route(req, res, url) {
     return fail(res, 405, `${req.method} not allowed on ${path}`);
   }
 
+  if (req.method === "GET" && path === "/socket-page") {
+    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
+    return res.end(SOCKET_PAGE);
+  }
+
   if (path === "/echo") {
     const raw = await readBody(req);
     const isJson = (req.headers["content-type"] ?? "").includes("application/json");
@@ -194,6 +266,18 @@ async function route(req, res, url) {
   if (status) {
     const code = Number(status[1]);
     return send(res, code, { status: code, requested: url.pathname });
+  }
+
+  // A slow endpoint for apiCall's {timeoutMs}: answers after `ms`. Capped,
+  // because the instance is public; a caller that gives up frees the timer.
+  if (path === "/delay" && req.method === "GET") {
+    const ms = Number(url.searchParams.get("ms"));
+    if (!Number.isInteger(ms) || ms < 0 || ms > MAX_DELAY_MS) {
+      return fail(res, 400, `ms must be a whole number from 0 to ${MAX_DELAY_MS}`);
+    }
+    const timer = setTimeout(() => send(res, 200, { delayedMs: ms }), ms);
+    res.on("close", () => clearTimeout(timer));
+    return;
   }
 
   if (path === "/upload" && req.method === "POST") {
@@ -212,6 +296,8 @@ const server = createServer((req, res) => {
     fail(res, e?.status ?? 500, e instanceof Error ? e.message : String(e));
   });
 });
+
+server.on("upgrade", upgradeSocket);
 
 server.listen(PORT, HOST, () => {
   const addr = server.address();

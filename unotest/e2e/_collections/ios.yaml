@@ -1,0 +1,5 @@
+# #318: the app as an iPhone opened from the home screen. Needs
+# `profile: "ios"`, which unotest.config.mjs turns on only under
+# DOGFOOD_IOS=1 — run it with `pnpm dogfood:ios`, never on its own.
+scenarios:
+  - ios-profile/home-screen-app

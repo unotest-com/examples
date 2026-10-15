@@ -4,4 +4,5 @@
 scenarios:
   - extension/marker
   - extension/service-worker
+  - red-twins/waits/service-worker
   - extension/mock-route

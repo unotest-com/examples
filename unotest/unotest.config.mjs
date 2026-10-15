@@ -32,9 +32,14 @@ const extensionLaunch =
       }
     : {};
 
+// #318: the iPhone profile, only for the `ios` collection
+// (`pnpm dogfood:ios`); every other dogfood run stays on chromium.
+const iosProfile = process.env.DOGFOOD_IOS === "1" ? { profile: "ios" } : {};
+
 /** @type {Partial<import('@unotest/web').UnotestConfig>} */
 export default {
   ...extensionLaunch,
+  ...iosProfile,
   // #374: app constants → unotest/generated/*.json before every local
   // run and before a bundle is packed; scenarios read them with
   // readJson(). Runs from the project root, like a collection's prepare.

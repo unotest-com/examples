@@ -26,6 +26,7 @@ PORT=9000 HOST=0.0.0.0 node server.mjs      # на сервере
 | GET/PATCH/DELETE | `/items/<id>` | чтение / правка `{name?, qty?}` / удаление |
 | POST | `/echo` | вернуть метод, query, заголовки и тело |
 | GET | `/status/<code>` | ответить этим статусом (проверка кодов) |
+| GET | `/delay?ms=N` | ответить через N мс (0–10000) — для `apiCall` с `{timeoutMs}` |
 | POST | `/upload` | разобрать multipart → поля, имена файлов, размеры, sha256 |
 
 ### Тред поддержки (#197, второй контекст)
