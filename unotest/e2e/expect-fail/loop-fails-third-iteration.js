@@ -6,6 +6,9 @@
 // iteration 4. The tag makes each iteration findable in the tree.
 
 function test_loop_fails_on_the_third_iteration() {
+  let ids;
+  let i;
+  let id;
   step("Iterate over four ids, skipping the second", () => {
     goto('/scenarios/clicks');
     waitFor(getByRole('button', {name: 'Click me', exact: true}));

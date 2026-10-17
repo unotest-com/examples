@@ -5,6 +5,9 @@
 // Steps were exercised live through explore_steps; written by hand because
 // the recorder cannot render css+role chains.
 function test_guard_env_values_secret_reveal() {
+  let name;
+  let value;
+  let row;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

@@ -3,6 +3,7 @@
 // steps.jsonl) and the log stream. An empty answer still says something
 // (the exit code), so no probe ever leaves a blank line.
 function probe_note(name, out) {
+  let text;
   text = out.stdout + out.stderr;
   if (text == '') {
     text = '(empty, exit ' + out.code + ')';

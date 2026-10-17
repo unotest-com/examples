@@ -2,6 +2,11 @@
 // and a CSS locator narrowed by its options — the same keys filter() reads.
 
 function test_checked_state_and_locator_options() {
+  let sw;
+  let was;
+  let all;
+  let one;
+  let same;
   step("Sign in and open the notification settings", () => {
     flow_signin();
     goto('/dashboard/settings');

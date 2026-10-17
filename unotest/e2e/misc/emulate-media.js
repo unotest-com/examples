@@ -5,6 +5,7 @@
 // Each is read before the call as a control.
 
 function test_emulate_media() {
+  let duration;
   step("Light by default: the light accent", () => {
     emulateMedia({colorScheme: 'light'});
     goto('/scenarios/big-table?rows=20&groups=0&markers=0&shadow=none&hidden=0&seed=42');

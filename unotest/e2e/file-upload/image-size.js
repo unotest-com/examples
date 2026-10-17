@@ -8,6 +8,9 @@
 // <img> to point at.
 
 function test_image_size_of_an_uploaded_preview() {
+  let size;
+  let raw;
+  let loaded;
   step("Upload a 3x2 PNG and open its preview", () => {
     goto('/scenarios/file-upload?chunks=2&delayMs=40');
     uploadFile(locator('input[type=file]'), 'unotest/fixtures/files/image-3x2.png');

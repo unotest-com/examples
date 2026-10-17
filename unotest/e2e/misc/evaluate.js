@@ -3,6 +3,8 @@
 // accessibility tree.
 
 function test_evaluate_reads_what_the_dom_hides() {
+  let canvasCount;
+  let doubled;
   step("Open a seeded table with canvas cells", () => {
     goto('/scenarios/big-table?rows=20&groups=0&markers=0&shadow=none&hidden=0&seed=42');
     waitFor(getByRole('row', {name: /^Row R-00001:/}));

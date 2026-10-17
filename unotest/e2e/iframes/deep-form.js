@@ -7,6 +7,7 @@
 // cross a boundary without leaving a scope behind.
 
 function test_nested_iframes() {
+  let level2;
   step("Descend with enterFrame and act in the deepest frame", () => {
     step("Open the nested-iframes scenario", () => {
       goto('/scenarios/iframes');

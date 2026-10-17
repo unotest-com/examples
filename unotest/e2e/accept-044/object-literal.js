@@ -2,6 +2,8 @@
 // variable and reaches a helper intact.
 
 function test_object_literal_to_helper() {
+  let h;
+  let got;
   step("Object literal in a variable goes into a helper", () => {
     h = {x: 1, y: "z"};
     got = echo_object(h);

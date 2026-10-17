@@ -4,6 +4,7 @@
 // beforeunload guard keys off too.
 
 function test_dirty_state_drives_save_and_discard() {
+  let original;
   step("Sign in and open settings", () => {
     flow_signin();
     goto('/dashboard/settings');

@@ -10,6 +10,7 @@ function text_page(body) {
 }
 
 function test_get_by_text_exact_twin() {
+  let message;
   step("Twin: {exact: true} leaves a longer text out", () => {
     goto(text_page('<p>Save all</p>'));
     message = caught_message(() => assertCount(getByText('Save', {exact: true}), 1, {timeout: 1000}));
@@ -23,6 +24,7 @@ function test_get_by_text_exact_twin() {
 }
 
 function test_get_by_label_exact_twin() {
+  let message;
   step("Twin: {exact: true} leaves a longer label out", () => {
     goto(text_page('<label>Email address <input></label>'));
     message = caught_message(() => assertCount(getByLabel('Email', {exact: true}), 1, {timeout: 1000}));
@@ -36,6 +38,7 @@ function test_get_by_label_exact_twin() {
 }
 
 function test_get_by_placeholder_exact_twin() {
+  let message;
   step("Twin: {exact: true} leaves a longer placeholder out", () => {
     goto(text_page('<input placeholder="Search all">'));
     message = caught_message(() => assertCount(getByPlaceholder('Search', {exact: true}), 1, {timeout: 1000}));
@@ -49,6 +52,7 @@ function test_get_by_placeholder_exact_twin() {
 }
 
 function test_get_by_alt_text_exact_twin() {
+  let message;
   step("Twin: {exact: true} leaves a longer alt text out", () => {
     goto(text_page('<img alt="Logo big">'));
     message = caught_message(() => assertCount(getByAltText('Logo', {exact: true}), 1, {timeout: 1000}));
@@ -62,6 +66,7 @@ function test_get_by_alt_text_exact_twin() {
 }
 
 function test_get_by_title_exact_twin() {
+  let message;
   step("Twin: {exact: true} leaves a longer title out", () => {
     goto(text_page('<span title="Close all">x</span>'));
     message = caught_message(() => assertCount(getByTitle('Close', {exact: true}), 1, {timeout: 1000}));

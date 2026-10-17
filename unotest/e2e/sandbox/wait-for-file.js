@@ -3,6 +3,9 @@
 // marker so parallel runs never collide.
 
 function test_wait_for_file_picks_up_background_work() {
+  let marker;
+  let path;
+  let content;
   step("Kick off a writer that finishes after a delay", () => {
     marker = randomWord(10);
     path = scratch_path(marker + '.log');

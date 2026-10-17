@@ -10,6 +10,7 @@ function list_page(items) {
 }
 
 function test_locator_has_text_twin() {
+  let message;
   step("Twin: {hasText} leaves the other item out", () => {
     goto(list_page('<li>Alpha</li>'));
     message = caught_message(() => assertCount(locator('li', {hasText: 'Beta'}), 1, {timeout: 1000}));
@@ -23,6 +24,7 @@ function test_locator_has_text_twin() {
 }
 
 function test_locator_has_not_text_twin() {
+  let message;
   step("Twin: {hasNotText} leaves the item with the text out", () => {
     goto(list_page('<li>Alpha</li>'));
     message = caught_message(() => assertCount(locator('li', {hasNotText: 'Alpha'}), 1, {timeout: 1000}));
@@ -36,6 +38,7 @@ function test_locator_has_not_text_twin() {
 }
 
 function test_locator_has_twin() {
+  let message;
   step("Twin: {has} leaves the item without a badge out", () => {
     goto(list_page('<li>Alpha</li>'));
     message = caught_message(() => assertCount(locator('li', {has: locator('b')}), 1, {timeout: 1000}));
@@ -49,6 +52,7 @@ function test_locator_has_twin() {
 }
 
 function test_locator_has_not_twin() {
+  let message;
   step("Twin: {hasNot} leaves the item with a badge out", () => {
     goto(list_page('<li>Alpha <b>new</b></li>'));
     message = caught_message(() => assertCount(locator('li', {hasNot: locator('b')}), 1, {timeout: 1000}));
@@ -62,6 +66,7 @@ function test_locator_has_not_twin() {
 }
 
 function test_filter_has_text_twin() {
+  let message;
   step("Twin: filter {hasText} leaves the other item out", () => {
     goto(list_page('<li>Alpha</li>'));
     message = caught_message(() => assertCount(getByRole('listitem').filter({hasText: 'Beta'}), 1, {timeout: 1000}));
@@ -75,6 +80,7 @@ function test_filter_has_text_twin() {
 }
 
 function test_filter_has_not_text_twin() {
+  let message;
   step("Twin: filter {hasNotText} leaves the item with the text out", () => {
     goto(list_page('<li>Alpha</li>'));
     message = caught_message(() => assertCount(getByRole('listitem').filter({hasNotText: 'Alpha'}), 1, {timeout: 1000}));
@@ -88,6 +94,7 @@ function test_filter_has_not_text_twin() {
 }
 
 function test_filter_has_twin() {
+  let message;
   step("Twin: filter {has} leaves the item without a badge out", () => {
     goto(list_page('<li>Alpha</li>'));
     message = caught_message(() => assertCount(getByRole('listitem').filter({has: locator('b')}), 1, {timeout: 1000}));
@@ -101,6 +108,7 @@ function test_filter_has_twin() {
 }
 
 function test_filter_has_not_twin() {
+  let message;
   step("Twin: filter {hasNot} leaves the item with a badge out", () => {
     goto(list_page('<li>Alpha <b>new</b></li>'));
     message = caught_message(() => assertCount(getByRole('listitem').filter({hasNot: locator('b')}), 1, {timeout: 1000}));

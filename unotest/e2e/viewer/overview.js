@@ -5,6 +5,7 @@
 // and the Run button in a viewer's own UI all work as-is.
 
 function test_overview_shows_one_tile_per_scenario() {
+  let tile_fill;
   step("Open the viewer on its Home tab", () => {
     flow_open_fixture_viewer();
     waitForText('OVERVIEW');

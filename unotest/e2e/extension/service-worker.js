@@ -6,6 +6,9 @@
 // opened before Playwright does not route the worker's requests (#288).
 
 function test_extension_service_worker() {
+  let sw;
+  let id;
+  let stored;
   step("The extension's worker runs, and its URL names the extension", () => {
     sw = waitForServiceWorker({timeoutMs: 15000});
     id = extensionId();

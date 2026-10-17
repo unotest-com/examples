@@ -3,6 +3,7 @@
 // sandbox/wait-for-file.
 
 function test_shell_reads_stdout_and_exit_codes() {
+  let out;
   step("A successful command hands back stdout", () => {
     out = shell('node', '-e', 'process.stdout.write("ready:" + process.argv[1])', 'dogfood');
     assertTrue(out.code == 0, out.stderr);

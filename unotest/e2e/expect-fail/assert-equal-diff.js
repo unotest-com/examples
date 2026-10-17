@@ -4,6 +4,7 @@
 // say "not equal".
 
 function test_assert_equal_names_the_path() {
+  let actual;
   step("Compare settings that differ in one nested field", () => {
     goto('/');
     waitForText('Stress-test browser');

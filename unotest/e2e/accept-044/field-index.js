@@ -2,6 +2,7 @@
 // intermediate variable.
 
 function test_field_index() {
+  let a;
   step("Index a field of an object literal directly", () => {
     a = {b: [{c: 1}, {c: 2}]};
     assertTrue(a.b[0].c === 1, 'a.b[0].c should be 1');

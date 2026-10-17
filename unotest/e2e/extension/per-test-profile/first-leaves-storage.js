@@ -6,6 +6,7 @@
 // the second and third files must fail. This one leaves the storage behind.
 
 function test_first_leaves_extension_storage() {
+  let stored;
   step("The extension stores a value through its worker", () => {
     waitForServiceWorker({timeoutMs: 15000});
     evaluateInServiceWorker('(v) => chrome.storage.local.set({left: v})', 'by the first test');

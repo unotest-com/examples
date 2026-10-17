@@ -4,6 +4,14 @@
 // The helper is `append_twice` in _helpers/values.js.
 
 function test_unary_not_and_array_append() {
+  let heading;
+  let blank;
+  let seen;
+  let n;
+  let alias;
+  let emptied;
+  let squares;
+  let i;
   step("! negates a value read from the page", () => {
     goto('/');
     waitForText('Stress-test browser');

@@ -3,6 +3,11 @@
 // first and the extra arguments after it.
 
 function test_bounding_box_and_evaluate_on_locator() {
+  let box;
+  let row;
+  let connected;
+  let doubled;
+  let sum;
   step("Open a seeded table", () => {
     goto('/scenarios/big-table?rows=20&groups=0&markers=0&shadow=none&hidden=0&seed=42');
     waitFor(getByRole('row', {name: /^Row R-00001:/}));

@@ -2,6 +2,8 @@
 // both inside an assertion and as the condition of an if.
 
 function test_string_methods() {
+  let s;
+  let hits;
   step("Methods inside assertions", () => {
     s = "  abcdef  ";
     assertTrue(s.trim() === "abcdef", 'trim should drop the outer spaces');

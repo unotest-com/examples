@@ -5,6 +5,9 @@
 // renders under the step, not only in the error card.
 
 function test_run_annotations_from_helper_log_and_judge() {
+  let pages;
+  let row;
+  let big;
   step("Read the fixture and annotate the row from a helper", () => {
     pages = 'unotest/fixtures/data/playground-pages.jsonl';
     row = readJsonLine(pages, {id: 'hub', enabled: true});

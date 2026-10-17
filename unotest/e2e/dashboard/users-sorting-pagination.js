@@ -2,6 +2,8 @@
 // buttons and sorting by column. Mutations live in dashboard/users-crud.
 
 function test_sorting_and_pagination() {
+  let beforeSort;
+  let afterSort;
   step("Sign in and open the users table", () => {
     flow_signin();
     goto('/dashboard/users');

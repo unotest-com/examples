@@ -3,6 +3,10 @@
 // be usable as real input, not just a string that looks plausible.
 
 function test_generators_produce_usable_fixture_data() {
+  let first;
+  let last;
+  let mail;
+  let blurb;
   step("Names and emails are non-empty and distinct", () => {
     first = randomFirstName();
     last = randomLastName();

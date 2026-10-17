@@ -4,6 +4,7 @@
 // page are where A left them.
 
 function test_two_clients_do_not_share_a_session() {
+  let clientB;
   step("Client A signs in", () => {
     flow_signin();
     assertUrl('/dashboard');

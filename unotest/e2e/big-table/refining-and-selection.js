@@ -3,6 +3,7 @@
 // Reading and counting live in big-table/counting-and-reading.
 
 function test_refining_and_selection_state() {
+  let editButtons;
   step("Open a small seeded table", () => {
     goto('/scenarios/big-table?rows=60&groups=0&markers=0&shadow=none&hidden=5&seed=42');
     waitFor(getByRole('row', {name: /^Row R-00001:/}));

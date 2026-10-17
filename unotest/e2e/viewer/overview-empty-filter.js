@@ -3,6 +3,8 @@
 // viewer/overview.
 
 function test_overview_survives_a_filter_that_matches_nothing() {
+  let width_with_tiles;
+  let width_when_empty;
   step("Open the viewer on its Home tab", () => {
     flow_open_fixture_viewer();
     waitForText('OVERVIEW');

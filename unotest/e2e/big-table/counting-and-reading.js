@@ -7,6 +7,12 @@
 // locator and a role locator must report.
 
 function test_counting_and_reading() {
+  let visibleRows;
+  let domRows;
+  let firstRow;
+  let raw;
+  let rendered;
+  let qty;
   step("Open a small seeded table", () => {
     goto('/scenarios/big-table?rows=60&groups=0&markers=0&shadow=none&hidden=5&seed=42');
     waitFor(getByRole('row', {name: /^Row R-00001:/}));

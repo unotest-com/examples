@@ -5,6 +5,10 @@
 // wrong encoding or width and height swapped fail the step.
 
 function test_read_file_files() {
+  let text;
+  let bytes;
+  let info;
+  let file;
   step("Text is read as written", () => {
     text = readFile('unotest/fixtures/files/sample.txt');
     assertTrue(textContains(text, 'plain text payload'), text);

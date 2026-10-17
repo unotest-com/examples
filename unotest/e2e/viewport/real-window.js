@@ -10,6 +10,7 @@
 // desktop's, and a collection has no window size to set.
 
 function test_page_is_as_wide_as_the_window() {
+  let sizes;
   step("Open a page on the real window", () => {
     goto('/');
     waitForText('Stress-test browser');

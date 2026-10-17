@@ -21,6 +21,10 @@ function quiet_page_html() {
 }
 
 function test_console_entries_and_page_errors() {
+  let ready;
+  let before;
+  let errors;
+  let thrown;
   step("A quiet page: nothing to report", () => {
     mockRoute('https://quiet-page.unotest.test/', {body: quiet_page_html(), contentType: 'text/html'});
     goto('https://quiet-page.unotest.test/');

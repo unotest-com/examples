@@ -2,6 +2,7 @@
 // closePage closes it and the steps are back on the tab they left.
 
 function test_new_page_and_close_page_return_to_the_tab_before() {
+  let tab;
   step("Start on the clicks scenario", () => {
     goto('/scenarios/clicks');
     assertVisible(getByRole('button', {name: 'Open popup'}));

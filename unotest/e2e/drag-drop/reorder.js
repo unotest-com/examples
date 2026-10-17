@@ -4,6 +4,7 @@
 // that is the trap this page exists for.
 
 function test_pointer_drag_moves_a_card() {
+  let handle;
   step("Open the board in pointer mode", () => {
     goto('/scenarios/drag-drop');
     click(getByRole('button', {name: 'Pointer'}));

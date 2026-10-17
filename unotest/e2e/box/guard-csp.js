@@ -6,6 +6,8 @@
 // headers. A small node script logs in over fetch (cookie jar by hand),
 // fetches a page and a reveal endpoint, and prints what it saw as JSON.
 function test_guard_csp() {
+  let probe;
+  let report;
   step("Probe the guard over HTTP", () => {
     probe = shell("node", "-e", `
       const [base, user, pass] = process.argv.slice(1);

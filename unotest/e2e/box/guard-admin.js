@@ -5,6 +5,10 @@
 // Locators were exercised live through explore_steps; the recorder cannot
 // render filter chains, so the file is written by hand from that log.
 function test_guard_admin() {
+  let me;
+  let mine;
+  let audit;
+  let newest;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

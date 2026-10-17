@@ -3,6 +3,12 @@
 // getComputedStyle itself, and against a different property as a control.
 
 function test_computed_style() {
+  let row;
+  let display;
+  let native;
+  let fontSize;
+  let accent;
+  let fg;
   step("Open a seeded table", () => {
     goto('/scenarios/big-table?rows=20&groups=0&markers=0&shadow=none&hidden=0&seed=42');
     waitFor(getByRole('row', {name: /^Row R-00001:/}));

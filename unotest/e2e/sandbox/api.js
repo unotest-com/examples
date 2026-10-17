@@ -4,6 +4,19 @@
 // so nothing here may assume an empty store.
 
 function test_api_fixture() {
+  let marker;
+  let created;
+  let itemId;
+  let fetched;
+  let mine;
+  let patched;
+  let removed;
+  let after;
+  let teapot;
+  let echoed;
+  let headers;
+  let res;
+  let files;
   step("CRUD round trip", () => {
     step("Create an item under a run-scoped marker", () => {
       marker = randomWord(12);

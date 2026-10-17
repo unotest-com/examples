@@ -10,6 +10,8 @@
 const ASK = "(room) => fetch('https://api.watchers.test/room/last-message/load', {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({roomIds: [room]})}).then(async (r) => ({status: r.status, text: await r.text()}))";
 
 function test_mock_route_on_the_pilot_path() {
+  let res;
+  let req;
   step("Allowlist: everything aborted and recorded, the site passes", () => {
     mockRoute('**/*', {abort: true, record: true});
     mockRoute('https://playground.unotest.com/**', {continue: true});

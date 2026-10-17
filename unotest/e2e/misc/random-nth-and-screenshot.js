@@ -2,6 +2,7 @@
 // on-demand evidence tool writing into the run directory.
 
 function test_random_nth_and_screenshot() {
+  let shot;
   step("Open a seeded table", () => {
     goto('/scenarios/big-table?rows=30&groups=0&markers=0&shadow=none&hidden=0&seed=42');
     waitFor(getByRole('row', {name: /^Row R-00001:/}));

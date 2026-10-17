@@ -80,8 +80,8 @@ function test_library_on_page_values() {
     assertEqual(counts.size, 3);
     assertEqual(counts.get('a'), 3);
     assertEqual(counts.has('z'), false);
-    assertEqual(counts.keys(), ['a', 'b', 'c']);
-    assertEqual(counts.entries().filter(([, n]) => n === 1).map(([k]) => k), ['b', 'c']);
+    assertEqual([...counts.keys()], ['a', 'b', 'c']);
+    assertEqual([...counts.entries()].filter(([, n]) => n === 1).map(([k]) => k), ['b', 'c']);
     const pairs = [];
     for (const [k, n] of counts) pairs.push(k + n);
     assertEqual(pairs, ['a3', 'b1', 'c1']);

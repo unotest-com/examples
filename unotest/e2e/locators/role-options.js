@@ -2,6 +2,12 @@
 // from the unlocked one, {checked} finds a switch by the state it is in.
 
 function test_role_state_options() {
+  let locked;
+  let unlocked;
+  let sw;
+  let was;
+  let same;
+  let other;
   step("Sign in and open the notification settings", () => {
     flow_signin();
     goto('/dashboard/settings');

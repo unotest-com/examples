@@ -5,6 +5,10 @@
 // produced, not one the scenario typed twice.
 
 function test_parse_values() {
+  let url;
+  let m;
+  let saved;
+  let total;
   step("Read a query parameter and a regex group off the page URL", () => {
     goto('/?room=42&user=ann%20lee');
     waitForText('Stress-test browser');

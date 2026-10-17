@@ -4,6 +4,8 @@
 // five times), so anything less specific picks the wrong row.
 
 function test_create_find_and_delete_a_user() {
+  let name;
+  let email;
   step("Sign in and open the users table", () => {
     flow_signin();
     goto('/dashboard/users');

@@ -4,6 +4,9 @@
 // from the file, so a wrong path or a wrong key fails here, not later.
 
 function test_read_json_constants() {
+  let shared;
+  let i;
+  let page;
   step("Read the constants and reach nested values", () => {
     shared = readJson('unotest/fixtures/data/shared-constants.json');
     assertTrue(shared.hub.pages[0].marker.text == 'Click me', json(shared.hub.pages[0]));

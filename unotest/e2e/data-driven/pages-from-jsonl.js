@@ -6,6 +6,13 @@
 // line and the file ends with a non-JSON line the oracle must skip.
 
 function test_pages_from_jsonl() {
+  let pages;
+  let ids;
+  let i;
+  let id;
+  let row;
+  let shot;
+  let disabled;
   step("Visit every enabled page from the fixture, one screenshot per row", () => {
     pages = 'unotest/fixtures/data/playground-pages.jsonl';
     ids = ['hub', 'clicks', 'drag-drop'];

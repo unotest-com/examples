@@ -4,6 +4,12 @@
 // steps nest inside it — the shape the viewer groups by.
 
 function test_soft_steps_tagged_from_jsonl() {
+  let pages;
+  let ids;
+  let i;
+  let id;
+  let row;
+  let disabled;
   step("Every enabled page from the fixture", () => {
     pages = 'unotest/fixtures/data/playground-pages.jsonl';
     ids = ['hub', 'clicks', 'drag-drop'];

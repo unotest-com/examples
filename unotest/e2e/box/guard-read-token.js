@@ -6,6 +6,10 @@
 // a live credential writes it into its own journal and screenshots. What
 // is asserted is that the page shows one exactly once, and never again.
 function test_guard_read_token() {
+  let label;
+  let notice;
+  let row;
+  let revoked;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

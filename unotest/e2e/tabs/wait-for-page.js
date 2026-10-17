@@ -3,6 +3,8 @@
 // after an earlier tab closed and its index is free again.
 
 function test_wait_for_page_catches_opened_tabs() {
+  let popup;
+  let opened;
   step("Open the clicks scenario", () => {
     goto('/scenarios/clicks');
     waitFor(getByRole('button', {name: 'Open popup'}));

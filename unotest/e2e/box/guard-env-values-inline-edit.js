@@ -6,6 +6,8 @@
 // the recorder cannot render css+role chains. The variable name carries a
 // random marker so parallel runs never touch each other's rows.
 function test_guard_env_values_inline_edit() {
+  let name;
+  let row;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

@@ -3,6 +3,7 @@
 // scheme still cuts it. Runs only through `pnpm dogfood:extension`.
 
 function test_extension_mock_route() {
+  let id;
   step("The worker stores a theme the popup script will show", () => {
     waitForServiceWorker({timeoutMs: 15000});
     id = extensionId();

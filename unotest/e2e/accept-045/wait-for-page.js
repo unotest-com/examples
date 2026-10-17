@@ -5,6 +5,8 @@
 // checked outside the dogfood: its extension fixture has no worker.
 
 function test_wait_for_page_hands_over_earlier_tabs() {
+  let first;
+  let second;
   step("Open the clicks scenario", () => {
     goto('/scenarios/clicks');
     waitFor(getByRole('button', {name: 'Open popup'}));

@@ -15,6 +15,7 @@ function role_page(body) {
 }
 
 function test_get_by_role_name_twin() {
+  let message;
   step("Twin: {name} leaves the other button out", () => {
     goto(role_page('<button>Cancel</button>'));
     message = caught_message(() => assertCount(getByRole('button', {name: 'Save'}), 1, {timeout: 1000}));
@@ -28,6 +29,7 @@ function test_get_by_role_name_twin() {
 }
 
 function test_get_by_role_exact_twin() {
+  let message;
   step("Twin: {exact: true} leaves a longer name out", () => {
     goto(role_page('<button>Save all</button>'));
     message = caught_message(() => assertCount(getByRole('button', {name: 'Save', exact: true}), 1, {timeout: 1000}));
@@ -41,6 +43,7 @@ function test_get_by_role_exact_twin() {
 }
 
 function test_get_by_role_disabled_twin() {
+  let message;
   step("Twin: {disabled: false} leaves the disabled button out", () => {
     goto(role_page('<button disabled>Save</button>'));
     message = caught_message(() => assertCount(getByRole('button', {name: 'Save', disabled: false}), 1, {timeout: 1000}));
@@ -54,6 +57,7 @@ function test_get_by_role_disabled_twin() {
 }
 
 function test_get_by_role_checked_twin() {
+  let message;
   step("Twin: {checked: true} leaves the unchecked box out", () => {
     goto(role_page('<label><input type="checkbox">Agree</label>'));
     message = caught_message(() => assertCount(getByRole('checkbox', {name: 'Agree', checked: true}), 1, {timeout: 1000}));
@@ -67,6 +71,7 @@ function test_get_by_role_checked_twin() {
 }
 
 function test_get_by_role_expanded_twin() {
+  let message;
   step("Twin: {expanded: true} leaves the collapsed button out", () => {
     goto(role_page('<button aria-expanded="false">Menu</button>'));
     message = caught_message(() => assertCount(getByRole('button', {name: 'Menu', expanded: true}), 1, {timeout: 1000}));
@@ -80,6 +85,7 @@ function test_get_by_role_expanded_twin() {
 }
 
 function test_get_by_role_pressed_twin() {
+  let message;
   step("Twin: {pressed: true} leaves the released button out", () => {
     goto(role_page('<button aria-pressed="false">Bold</button>'));
     message = caught_message(() => assertCount(getByRole('button', {name: 'Bold', pressed: true}), 1, {timeout: 1000}));
@@ -93,6 +99,7 @@ function test_get_by_role_pressed_twin() {
 }
 
 function test_get_by_role_selected_twin() {
+  let message;
   step("Twin: {selected: true} leaves the unselected tab out", () => {
     goto(role_page('<div role="tablist"><div role="tab" aria-selected="false">Tab</div></div>'));
     message = caught_message(() => assertCount(getByRole('tab', {selected: true}), 1, {timeout: 1000}));
@@ -106,6 +113,7 @@ function test_get_by_role_selected_twin() {
 }
 
 function test_get_by_role_level_twin() {
+  let message;
   step("Twin: {level: 2} leaves the h1 out", () => {
     goto(role_page('<h1>Title</h1>'));
     message = caught_message(() => assertCount(getByRole('heading', {name: 'Title', level: 2}), 1, {timeout: 1000}));
@@ -121,6 +129,7 @@ function test_get_by_role_level_twin() {
 // includeHidden widens: the twin asserts the count without the key (0) and
 // the key lets the hidden button in.
 function test_get_by_role_include_hidden_twin() {
+  let message;
   step("Twin: {includeHidden: true} lets the hidden button in", () => {
     goto(role_page('<button style="display:none">Ghost</button>'));
     message = caught_message(() => assertCount(getByRole('button', {name: 'Ghost', includeHidden: true}), 0, {timeout: 1000}));

@@ -2,6 +2,8 @@
 // to branch on. Nothing matching is an empty list, not a wait.
 
 function test_texts_of_every_match() {
+  let tabs;
+  let none;
   step("Sign in and open settings", () => {
     flow_signin();
     goto('/dashboard/settings');

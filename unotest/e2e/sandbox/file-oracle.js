@@ -6,6 +6,10 @@
 // parallel runs never collide.
 
 function test_json_line_oracles() {
+  let marker;
+  let path;
+  let evt;
+  let seen;
   step("A background writer appends two events plus noise", () => {
     marker = randomWord(10);
     path = scratch_path(marker + '.jsonl');

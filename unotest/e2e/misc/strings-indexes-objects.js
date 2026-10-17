@@ -5,6 +5,11 @@
 // receives the object is `describe_user` in _helpers/values.js.
 
 function test_strings_objects_and_indexes() {
+  let url;
+  let title;
+  let padded;
+  let user;
+  let nested;
   step("String members answer on text read from the page", () => {
     goto('/');
     waitForText('Stress-test browser');

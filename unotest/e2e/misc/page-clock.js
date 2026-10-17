@@ -4,6 +4,10 @@
 // what falls due; clockRun lets it go.
 
 function test_page_clock_freezes_ticks_and_runs() {
+  let frozen;
+  let now;
+  let later;
+  let ticked;
   step("Frozen before the page loads: every run gets the same frame", () => {
     clockFreeze('2026-01-15T10:00:00Z');
     goto(clock_page_url());

@@ -70,6 +70,8 @@ function guard_admin_tab(tab) {
 // live session, so this tidies the table but frees no seat by itself.
 function flow_guard_kill_other_sessions() {
   // Each kill posts the tab back with it, so the loop stays on Sessions.
+  let others;
+  let i;
   guard_admin_tab('sessions');
   others = getByRole('row').filter({has: getByRole('button', {name: 'kill', exact: true})}).filter({hasNotText: 'you'});
   for (i = 0; i < 20; i = i + 1) {

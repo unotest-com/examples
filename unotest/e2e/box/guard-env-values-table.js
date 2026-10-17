@@ -5,6 +5,8 @@
 // Every locator below was exercised live through explore_steps; the
 // recorder cannot render css+role chains, so the file is written by hand.
 function test_guard_env_values_table() {
+  let target;
+  let secret;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

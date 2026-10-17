@@ -4,6 +4,7 @@
 // it (#288).
 
 function test_third_mocks_the_worker_fetch() {
+  let reply;
   step("A mock answers the fetch the worker makes itself", () => {
     mockRoute('https://api.unotest.test/room/last-message/load', {body: {text: 'Hello from the mock'}});
     waitForServiceWorker({timeoutMs: 15000});

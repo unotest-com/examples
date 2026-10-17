@@ -6,6 +6,7 @@
 function test_users_table() {
   // beforeEach: what every test needed. Signing in once is enough — the
   // session holds — and each check below opens the page it starts from.
+  let before;
   step("Sign in", () => {
     flow_signin();
   });

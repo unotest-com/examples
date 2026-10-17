@@ -2,6 +2,7 @@
 // Guard: Values — remove a box variable, audited
 // #4287f5
 function test_guard_env_values_remove() {
+  let name;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

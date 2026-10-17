@@ -5,6 +5,7 @@
 // the leak and pass.
 
 function test_mock_route_escaped_request() {
+  let got;
   step("Allowlist: everything aborted and recorded, the site passes", () => {
     mockRoute('**/*', {abort: true, record: true});
     mockRoute('https://playground.unotest.com/**', {continue: true});

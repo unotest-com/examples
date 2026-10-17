@@ -2,6 +2,14 @@
 // a call argument, nested, and as a guard whose other branch must not run.
 
 function test_ternary() {
+  let shown;
+  let state;
+  let sizes;
+  let i;
+  let row;
+  let name;
+  let url;
+  let host;
   step("a ternary picks a value from what the page shows", () => {
     goto('/');
     waitForText('Stress-test browser');
@@ -21,7 +29,7 @@ function test_ternary() {
   });
 
   step("only the picked branch runs", () => {
-    row = null;
+    row = /** @type {{ name: string } | null} */ (null);
     name = row == null ? 'nobody' : row.name;
     assertTrue(name === 'nobody', name);
     url = getUrl();

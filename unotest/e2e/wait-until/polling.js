@@ -3,6 +3,9 @@
 // with a bearer token from the secrets that must stay masked in the run.
 
 function test_wait_until_polls_page_and_api() {
+  let reached;
+  let answer;
+  let echoed;
   step("A counter on the page crosses a threshold", () => {
     goto(clock_page_url());
     reached = waitUntil(() => parseJson(textContent(getByTestId('count'))) >= 5, {intervalMs: 100, label: 'counter reached 5'});

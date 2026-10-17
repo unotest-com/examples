@@ -3,6 +3,9 @@
 // env(name, fallback): the same read with a default in one line.
 
 function test_env_reads_what_is_set_and_null_otherwise() {
+  let base;
+  let live;
+  let dflt;
   step("A value from unotest/.env comes back as a string", () => {
     base = env('APP_BASE_URL');
     assertTrue(base != null, 'APP_BASE_URL is set for the dogfood suite');

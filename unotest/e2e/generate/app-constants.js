@@ -3,6 +3,8 @@
 // so the texts asserted here cannot drift from the source by hand.
 
 function test_constants_from_the_generate_step() {
+  let hub;
+  let i;
   step("Read the generated constants", () => {
     hub = readJson('unotest/generated/app-constants.json').hub;
     assertTrue(hub.pages.length == 2, json(hub.pages));

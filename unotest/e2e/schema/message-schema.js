@@ -14,6 +14,9 @@ function schema_page_html() {
 }
 
 function test_message_matches_its_schema() {
+  let site;
+  let schema;
+  let req;
   step("The page sends a message", () => {
     site = 'https://schema-page.unotest.test/';
     mockRoute(site, {body: schema_page_html(), contentType: 'text/html'});

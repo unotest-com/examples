@@ -5,6 +5,9 @@
 // must NOT show them, and only a window assertion can prove that.
 
 function test_publisher_tab_feeds_the_live_log() {
+  let marker;
+  let quiet;
+  let fresh;
   step("Open the live feed", () => {
     goto('/scenarios/ws-live');
     waitFor(getByRole('log', {name: 'Live message feed'}));

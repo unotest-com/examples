@@ -8,6 +8,13 @@
 // never see each other's rows.
 
 function test_db_fixture() {
+  let rows;
+  let sku;
+  let inserted;
+  let updated;
+  let mine;
+  let deleted;
+  let gone;
   step("Reads seeded rows", () => {
     step("Seeded widgets come back through dbQuery", () => {
       rows = dbQuery('SELECT sku, name, qty FROM widgets WHERE status = ? ORDER BY sku', 'active');

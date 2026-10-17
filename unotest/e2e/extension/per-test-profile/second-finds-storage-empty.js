@@ -3,6 +3,7 @@
 // test left is not there; on a shared one (the control) it is.
 
 function test_second_finds_extension_storage_empty() {
+  let stored;
   step("The next test's extension storage is empty", () => {
     waitForServiceWorker({timeoutMs: 15000});
     stored = evaluateInServiceWorker('() => chrome.storage.local.get("left")');

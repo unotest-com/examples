@@ -6,6 +6,14 @@
 // the recorder cannot render css+role chains. The textarea content is read
 // with inputValue: the script writes `.value`, so its text content is empty.
 function test_guard_env_values_json_view() {
+  let mark;
+  let varName;
+  let secretName;
+  let secretValue;
+  let area;
+  let text;
+  let i;
+  let revealed;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

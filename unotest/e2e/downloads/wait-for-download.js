@@ -3,6 +3,9 @@
 // absolute path it returns, and {name} picks one of two downloads.
 
 function test_wait_for_download_saves_the_file() {
+  let file;
+  let csv;
+  let serverLog;
   step("Open a page and give it two download links", () => {
     goto('/scenarios/clicks');
     waitFor(getByRole('button', {name: 'Open popup'}));

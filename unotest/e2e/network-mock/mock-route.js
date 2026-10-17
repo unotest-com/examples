@@ -34,6 +34,10 @@ function allowlist_page_html() {
 }
 
 function test_mock_route_answers_the_page() {
+  let site;
+  let req;
+  let after;
+  let before;
   step("A mocked API answers what the page shows", () => {
     site = 'https://mock-page.unotest.test/';
     mockRoute('**/*', {abort: true, record: true});

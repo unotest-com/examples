@@ -7,6 +7,7 @@
 // `/tmp/unotest-dogfood`, the run's own tmpfs. The directory is created on
 // the way, so a writer only has to write.
 function scratch_path(name) {
+  let out;
   out = shell('sh', '-c', 'if [ -n "$UNOTEST_ARTIFACTS_ROOT" ]; then d=/tmp/unotest-dogfood; else d=unotest/.tmp; fi; mkdir -p "$d" && printf %s "$d/$1"', 'scratch', name);
   assertTrue(out.code == 0, out.stderr);
   return out.stdout;

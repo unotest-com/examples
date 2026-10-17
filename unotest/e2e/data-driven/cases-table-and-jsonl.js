@@ -4,6 +4,11 @@
 // Keep it in step with the guide.
 
 function test_pages_from_a_table_and_a_file() {
+  let cases;
+  let i;
+  let c;
+  let ids;
+  let row;
   step("Cases from a table in the scenario", () => {
     cases = [
       {id: 'hub', path: '/', text: 'Stress-test browser'},

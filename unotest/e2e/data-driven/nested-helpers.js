@@ -6,6 +6,10 @@
 // of the entry statement.
 
 function test_helper_calls_helper_with_steps() {
+  let pages;
+  let ids;
+  let i;
+  let row;
   step("Visit two fixture pages through nested helpers", () => {
     pages = 'unotest/fixtures/data/playground-pages.jsonl';
     ids = ['hub', 'clicks'];

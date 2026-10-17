@@ -2,6 +2,8 @@
 // can build "yesterday" without importing anything.
 
 function test_time_helpers_produce_usable_values() {
+  let started;
+  let stamp;
   step("Epoch milliseconds move forward", () => {
     started = nowMs();
     pause(60); // lint-ok: measuring nowMs() needs a real gap, nothing to wait FOR

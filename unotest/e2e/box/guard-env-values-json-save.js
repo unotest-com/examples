@@ -7,6 +7,16 @@
 // string surgery for that. evaluate only computes the text; the page is
 // driven through fill/click like everywhere else.
 function test_guard_env_values_json_save() {
+  let mark;
+  let keep;
+  let drop;
+  let secretName;
+  let secretValue;
+  let configured;
+  let area;
+  let edited;
+  let row;
+  let replaced;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

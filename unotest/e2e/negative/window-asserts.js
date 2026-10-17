@@ -4,6 +4,8 @@
 // marker must never show up; same for a file nobody seeds.
 
 function test_nothing_appears_without_a_publisher() {
+  let marker;
+  let url;
   step("Open the live feed without publishing anything", () => {
     goto('/scenarios/ws-live');
     marker = randomWord(10);

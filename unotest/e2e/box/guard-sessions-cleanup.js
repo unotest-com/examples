@@ -6,6 +6,7 @@
 // leave sessions behind. Ends all but the current one and checks the
 // table is down to that one row.
 function test_guard_sessions_cleanup() {
+  let sessions;
   step("Sign in as admin", () => {
     flow_guard_admin_login(BOX_LAB_PASSWORD);
   });

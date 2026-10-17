@@ -3,6 +3,8 @@
 // size — the size belongs to the browser, not to one tab.
 
 function test_set_viewport_resizes_without_reload() {
+  let width;
+  let popupWidth;
   step("Open the clicks scenario at the configured size", () => {
     goto('/scenarios/clicks');
     waitFor(getByRole('button', {name: 'Open popup'}));

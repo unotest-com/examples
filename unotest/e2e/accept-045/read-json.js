@@ -5,6 +5,7 @@
 // field and reads them back, so a lost byte or a wrong key fails here.
 
 function test_read_json_pilot_constants() {
+  let shared;
   step("Read the pilot's constants", () => {
     shared = readJson('unotest/fixtures/accept-045/shared.json');
     assertTrue(shared.state['preset-not-found'] == 'для этого сайта пресета нет', json(shared.state));
