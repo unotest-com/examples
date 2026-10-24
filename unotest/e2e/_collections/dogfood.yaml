@@ -30,6 +30,7 @@ scenarios:
   - file-upload/image-size
   - downloads/wait-for-download
   - console/console-entries
+  - network-mock/network-entries
   - mcp-client/mcp-client
   - vm/lifecycle
   - drag-drop/reorder
@@ -69,6 +70,7 @@ scenarios:
   - wait-until/polling
   - network-mock/mock-route
   - misc/two-contexts
+  - multi-context/two-profiles
   - browser-capabilities/passkey-permissions-offline
   - negative/window-asserts
   - assert-never/condition-window
@@ -139,6 +141,8 @@ scenarios:
   - websocket/sockets
   # #449: red twins — each check called where it must fail, its message read.
   - red-twins/page-assertions
+  - red-twins/two-profiles
+  - red-twins/cdp-endpoint
   - red-twins/file-assertions
   - red-twins/page-signal-assertions
   - red-twins/screenshot-assertions

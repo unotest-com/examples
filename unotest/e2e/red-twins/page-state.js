@@ -98,6 +98,36 @@ function test_console_reader_twins() {
   });
 }
 
+function net_page() {
+  return '<button onclick="fetch(\'/twin-api\')">Fetch A</button><button onclick="fetch(\'/twin-other\')">Fetch B</button>';
+}
+
+function test_network_reader_twins() {
+  step("Open the page and fetch from it", () => {
+    mockRoute('**/twin-net', {contentType: 'text/html', body: net_page()});
+    mockRoute('**/twin-api', {body: {ok: true}});
+    mockRoute('**/twin-other', {body: {ok: true}});
+    goto('/twin-net');
+    click(getByRole('button', {name: 'Fetch A'}));
+    waitUntil(() => networkEntries({glob: '**/twin-api'}).length > 0, {timeoutMs: 3000});
+  });
+
+  step("networkEntries since: a request before it is left out", () => {
+    const after = nowMs();
+    assert_failed_with(caught_message(() => assertEqual(networkEntries({since: after, glob: '**/twin-api'}).length, 1)), 'got 0');
+    click(getByRole('button', {name: 'Fetch A'}));
+    waitUntil(() => networkEntries({since: after, glob: '**/twin-api'}).length > 0, {timeoutMs: 3000});
+    assertEqual(networkEntries({since: after, glob: '**/twin-api'}).length, 1);
+  });
+
+  step("networkEntries glob: another URL is left out", () => {
+    click(getByRole('button', {name: 'Fetch B'}));
+    waitUntil(() => networkEntries({glob: '**/twin-other'}).length > 0, {timeoutMs: 3000});
+    assert_failed_with(caught_message(() => assertEqual(networkEntries({glob: '**/twin-other'}).length, 3)), 'got 1');
+    assertEqual(networkEntries({glob: '**/twin-other'}).length, 1);
+  });
+}
+
 function test_permission_twins() {
   step("Open the page", () => { open_state_page(); });
 

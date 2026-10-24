@@ -84,3 +84,45 @@ function test_terminal_type_without_echo() {
     terminalWaitForText('got-typed-blind');
   });
 }
+
+function test_terminal_text_is_read_back() {
+  step("A wait returns the match and terminalText the screen", () => {
+    openHere('Terminal');
+    terminalType('echo CODE-4821');
+    terminalPress('Enter');
+    const m = terminalWaitForText(/CODE-(\d+)/);
+    assertEqual(m[1], '4821');
+    assertTrue(textContains(terminalText(), 'CODE-4821'), 'the screen text holds the echoed code');
+  });
+}
+
+function test_terminal_clipboard_both_ways() {
+  step("Text put on the machine's clipboard is what the shell pastes", () => {
+    openHere('Terminal');
+    terminalClipboardWrite('clip-4821');
+    terminalType('pbpaste');
+    terminalPress('Enter');
+    terminalWaitForText('clip-4821');
+  });
+
+  step("What the shell copies is what the scenario reads", () => {
+    terminalType('echo back-17 | pbcopy');
+    terminalPress('Enter');
+    assertEqual(terminalClipboardRead(), 'back-17');
+  });
+}
+
+function test_terminal_leave_open() {
+  step("A window opened with leaveOpen stays until closeTerminal ends it", () => {
+    let host = env('UNOTEST_DOGFOOD_TERMINAL_HOST');
+    if (host == null) {
+      openTerminal('Terminal', { leaveOpen: true });
+    } else {
+      openTerminal('Terminal', { host: host, leaveOpen: true });
+    }
+    terminalType('echo left-open');
+    terminalPress('Enter');
+    terminalWaitForText('left-open');
+    closeTerminal();
+  });
+}
