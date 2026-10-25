@@ -4,11 +4,11 @@
 
 function text_page_url() {
   return 'data:text/html,<p>Saved</p><p id="busy">Loading</p>' +
-    '<script>setTimeout(() => document.getElementById("busy").remove(), 1500);</script>';
+    '<script>setTimeout(() => document.getElementById("busy").remove(), 4000);</script>';
 }
 
 function test_wait_for_text_options() {
-  step("Open the page: 'Saved' and, for 1.5 s, 'Loading'", () => {
+  step("Open the page: 'Saved' and, for 4 s, 'Loading'", () => {
     goto(text_page_url());
   });
 

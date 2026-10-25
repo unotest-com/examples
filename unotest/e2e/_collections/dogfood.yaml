@@ -17,6 +17,7 @@ workers: 2
 scenarios:
   - hub/smoke
   - hub/navigation
+  - flow-selection/tests-and-a-flow
   - big-table/edit-dialog
   - big-table/counting-and-reading
   - big-table/refining-and-selection
