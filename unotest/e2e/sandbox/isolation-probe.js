@@ -35,7 +35,7 @@ function test_isolation_probe_reports_what_a_run_can_reach() {
     probe_note('rootfs', shell('sh', '-c', 'touch /.isolation-probe && echo created && rm -f /.isolation-probe', {allowNonZero: true}));
     probe_note('tmp', shell('sh', '-c', 'touch /tmp/.isolation-probe && echo created && rm -f /tmp/.isolation-probe', {allowNonZero: true}));
     probe_note('docker-sock', shell('ls', '-la', '/var/run/docker.sock', {allowNonZero: true}));
-    probe_note('caps', shell('grep', 'CapEff', '/proc/self/status', {allowNonZero: true}));
+    probe_note('caps', shell('sh', '-c', 'grep CapEff /proc/self/status', {allowNonZero: true}));
   });
 
   step("Environment variables", () => {
